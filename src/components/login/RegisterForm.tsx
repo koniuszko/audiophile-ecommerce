@@ -4,11 +4,12 @@ import * as Yup from 'yup'
 import axios from "axios";
 import {FormLabel, InputField, PrimaryButton} from "@/styles/global";
 import {router} from "next/client";
+import StatusModal from "@/components/login/StatusModal";
+import {useState} from "react";
 
 export const RegisterWrapper = styled.section`
   width: 280px;
   margin: 48px auto;
-
 
   .form {
     display: flex;
@@ -23,13 +24,12 @@ export const RegisterWrapper = styled.section`
     }
   }
 
-
   .checkbox-container {
     margin-top: 12px;
     display: flex;
+    flex-direction: column;
     gap: 4px;
     align-self: flex-start;
-
   }
 
   .error-message {
@@ -47,6 +47,9 @@ const emailRegex = new RegExp(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const RegisterForm = () => {
+    const [resMessage, setResMessage] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <RegisterWrapper>
             <Formik
@@ -70,7 +73,9 @@ const RegisterForm = () => {
                         .then(res => {
                             console.log(res);
                             if (res.status === 201) {
-                                router.push('/')
+                                // router.push('/')
+                                setResMessage(res.data.message)
+                                setIsOpen(true)
                             }
                         })
                         .catch(err => console.log(err))
@@ -102,16 +107,20 @@ const RegisterForm = () => {
                         <InputField name="passwordConfirmation" type="password"/>
                     </div>
                     <div className="checkbox-container">
-                        <Field name="acceptedTerms" type="checkbox"/>
-                        <FormLabel htmlFor="acceptedTerms">I accept website's terms and
-                            conditions.</FormLabel>
+                        <div>
+                            <Field name="acceptedTerms" type="checkbox"/>
+                            <FormLabel htmlFor="acceptedTerms">I accept website's terms and
+                                conditions.</FormLabel>
+                        </div>
+                        <ErrorMessage name="acceptedTerms" render={msg => <p className="error-message">{msg}</p>}/>
                     </div>
-                    <ErrorMessage name="acceptedTerms" render={msg => <p className="error-message">{msg}</p>}/>
+                    
                     <PrimaryButton type="submit">
                         Register
                     </PrimaryButton>
                 </Form>
             </Formik>
+            <StatusModal message={resMessage} isOpen={isOpen}/>
         </RegisterWrapper>
     )
 }

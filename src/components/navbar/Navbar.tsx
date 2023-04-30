@@ -3,6 +3,11 @@ import styled from 'styled-components'
 import Image from "next/image";
 import Link from "next/link";
 
+import logo from '@assets/shared/logo.svg'
+import menuIcon from '@assets/icons/icon-menu.svg'
+import accountIcon from '@assets/icons/icon-user.svg'
+import shoppingCartIcon from '@assets/icons/icon-cart.svg'
+
 interface OwnProps {
 }
 
@@ -27,15 +32,15 @@ const Navbar: FunctionComponent<Props> = (props) => {
     return (
         <NavbarWrapper>
             <button>
-                <Image src={'assets/icons/icon-menu.svg'} alt={'menu-icon'} width={20}
+                <Image src={menuIcon} alt={'menu-icon'} width={20}
                        height={20}/>
             </button>
             <Link href={'/'}>
-                <Image src={'assets/shared/logo.svg'} alt={'logo'} width={143} height={25}/>
+                <Image src={logo} alt={'logo'} width={143} height={25}/>
             </Link>
             <div className="account">
                 <Link href={'/login'}>
-                    <Image src={'assets/icons/icon-user.svg'} alt={'menu-icon'} width={20}
+                    <Image src={accountIcon} alt={'menu-icon'} width={20}
                            height={20}/>
                 </Link>
             </div>

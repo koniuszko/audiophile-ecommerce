@@ -1,13 +1,12 @@
 import User from '../../models/UserModel'
-import {dbUsersConnect} from "@/utils/dbConnect";
+import {dbConnect} from "@/utils/dbConnect";
 import {NextApiRequest, NextApiResponse} from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
-        await dbUsersConnect();
+        await dbConnect();
         const user = await User.findOne({
             email: req.body.email,
-            username: req.body.username
         })
         if (!user) {
             const newUser = User.create(req.body);

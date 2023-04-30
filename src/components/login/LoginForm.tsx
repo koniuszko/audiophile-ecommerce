@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import {signIn, useSession} from "next-auth/react";
+import {signIn, SignInResponse, useSession} from "next-auth/react";
 import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
 import React, {useState} from "react";
-import {router} from "next/client";
 import {LoginUserProps} from "@/interfaces/login_interfaces";
 import {FormLabel, InputField, PrimaryButton} from "@/styles/global";
+import {router} from "next/client";
 
 export const LoginWrapper = styled.section`
   width: 280px;
@@ -31,13 +31,15 @@ export const LoginWrapper = styled.section`
       gap: 4px;
     }
   }
-}
 
-.error-message {
-  font-size: 12px;
-  color: #d82700;
-}
+
+  .error-message {
+    font-size: 12px;
+    color: #d82700;
+  }
 `
+
+
 export const loginUser = async ({email, password}: LoginUserProps) => {
     const res = await signIn("credentials", {
         redirect: false,
@@ -50,6 +52,7 @@ export const loginUser = async ({email, password}: LoginUserProps) => {
 const LoginForm = () => {
     const [validationError, setValidationError] = useState(false);
 
+    const {data: session} = useSession()
     return (
         <LoginWrapper>
             <Formik
@@ -62,18 +65,18 @@ const LoginForm = () => {
                     password: Yup.string()
                 })}
                 onSubmit={(values) => {
-                    //     loginUser({
-                    //         email: values.email,
-                    //         password: values.password
-                    //     }).then((res) => {
-                    //         if (res.status === 401) {
-                    //             setValidationError(true)
-                    //         }
-                    //         if (res.status === 200) {
-                    //             router.push('/')
-                    //         }
-                    //     })
-                    //     ;
+                    loginUser({
+                        email: values.email,
+                        password: values.password
+                    }).then((res: SignInResponse | undefined) => {
+                        if (res?.status === 401) {
+                            setValidationError(true)
+                        }
+                        if (res?.status === 200) {
+                            router.push('/')
+                        }
+                    })
+                    ;
                 }
 
                 }

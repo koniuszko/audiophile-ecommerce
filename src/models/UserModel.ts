@@ -23,7 +23,7 @@ const userSchema = new Schema<IUser>({
     role: {
         type: String,
         required: true,
-        default: "USER",
+        default: "CUSTOMER",
     },
     address: {
         type: Object,
