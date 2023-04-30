@@ -1,5 +1,6 @@
 import styled, {createGlobalStyle} from "styled-components";
 import {Field} from "formik";
+import {IModalProps} from "@/interfaces/login_interfaces";
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -34,8 +35,16 @@ export const InputField = styled(Field)`
   font-size: 14px;
   font-weight: bold;
   letter-spacing: -0.25px;
+  color: #CFCFCF;
+
+  &::placeholder {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+  }
 
   &:focus {
+    color: #191919;
     border-color: #D87D4A;
     caret-color: #D87D4A;
   }
@@ -77,3 +86,39 @@ export const FormLabel = styled.label`
   font-weight: bold;
   letter-spacing: -0.21px;
 `
+
+export const ErrorMsg = styled.p`
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.2px;
+  color: #d82700;
+`
+
+export const ModalWrapper = styled.div<IModalProps>`
+  display: ${({isOpen}) => (isOpen ? 'block' : 'none')};
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+`;
+
+export const ModalContent = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF;
+  padding: 32px;
+  border-radius: 8px;
+  text-align: ;
+`
+

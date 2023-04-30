@@ -5,5 +5,14 @@ export interface LoginSwitchProps {
 
 export interface LoginUserProps {
     email: string,
-    password: string
+    password: string,
+    remember: boolean
+}
+
+export interface IModalProps {
+    isOpen: boolean;
+}
+
+export interface IRegistrationModalProps extends IModalProps {
+    message: string;
 }

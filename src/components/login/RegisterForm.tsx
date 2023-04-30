@@ -2,8 +2,7 @@ import styled from "styled-components";
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import axios from "axios";
-import {FormLabel, InputField, PrimaryButton} from "@/styles/global";
-import {router} from "next/client";
+import {ErrorMsg, FormLabel, InputField, PrimaryButton} from "@/styles/global";
 import StatusModal from "@/components/login/StatusModal";
 import {useState} from "react";
 
@@ -32,11 +31,10 @@ export const RegisterWrapper = styled.section`
     align-self: flex-start;
   }
 
-  .error-message {
-    margin-top: 4px;
-    font-size: 10px;
-    color: #D82700;
+  .checkbox {
+    margin-right: 6px;
   }
+
 `
 
 const url = "/api/register"
@@ -61,7 +59,7 @@ const RegisterForm = () => {
                     acceptedTerms: false,
                 }}
                 validationSchema={Yup.object({
-                    name: Yup.string().required('Required').min(3, "Must be at least 3 characters long").max(20, 'Must be 20 characters or less'),
+                    name: Yup.string().required('Required').min(3, "Must be at least 3 characters long").max(30, 'Must be 30 characters or less'),
                     email: Yup.string().required('Required').matches(emailRegex, "Email is wrong!"),
                     password: Yup.string().required('Required').min(3, "Must be at least 3 characters long").max(20, 'Must be 20 characters or less').matches(passwordRegex, "At least 8 characters, must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number, can contain special characters"),
                     passwordConfirmation: Yup.string().oneOf([Yup.ref('password'), undefined], "Passwords must match"),
@@ -73,7 +71,6 @@ const RegisterForm = () => {
                         .then(res => {
                             console.log(res);
                             if (res.status === 201) {
-                                // router.push('/')
                                 setResMessage(res.data.message)
                                 setIsOpen(true)
                             }
@@ -85,36 +82,38 @@ const RegisterForm = () => {
                     <div className="form-input">
                         <FormLabel htmlFor="name">Name</FormLabel>
                         <ErrorMessage name="name"
-                                      render={msg => <p
-                                          className={"error-message"}>{msg}</p>}/>
+                                      render={msg => <ErrorMsg
+                                          className={"error-message"}>{msg}</ErrorMsg>}/>
                         <InputField name="name" type="text"/>
                     </div>
                     <div className="form-input">
                         <FormLabel htmlFor="email">Email Address</FormLabel>
-                        <ErrorMessage name="email" render={msg => <p className="error-message">{msg}</p>}/>
+                        <ErrorMessage name="email"
+                                      render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
                         <InputField name="email" type="email"/>
                     </div>
 
                     <div className="form-input">
                         <FormLabel htmlFor="password">Password</FormLabel>
-                        <ErrorMessage name="password" render={msg => <p className="error-message">{msg}</p>}/>
+                        <ErrorMessage name="password"
+                                      render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
                         <InputField name="password" type="password"/>
                     </div>
                     <div className="form-input">
                         <FormLabel htmlFor="passwordConfirmation">Confirm password</FormLabel>
                         <ErrorMessage name="passwordConfirmation"
-                                      render={msg => <p className="error-message">{msg}</p>}/>
+                                      render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
                         <InputField name="passwordConfirmation" type="password"/>
                     </div>
                     <div className="checkbox-container">
                         <div>
-                            <Field name="acceptedTerms" type="checkbox"/>
+                            <Field className="checkbox" name="acceptedTerms" type="checkbox"/>
                             <FormLabel htmlFor="acceptedTerms">I accept website's terms and
                                 conditions.</FormLabel>
                         </div>
-                        <ErrorMessage name="acceptedTerms" render={msg => <p className="error-message">{msg}</p>}/>
+                        <ErrorMessage name="acceptedTerms"
+                                      render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
                     </div>
-                    
                     <PrimaryButton type="submit">
                         Register
                     </PrimaryButton>

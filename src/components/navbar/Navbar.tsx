@@ -21,6 +21,10 @@ const NavbarWrapper = styled.nav`
   justify-content: space-between;
   padding: 32px 24px;
 
+  .menu {
+    margin-right: 26px;
+  }
+
   .account {
     display: flex;
     gap: 6px
@@ -31,7 +35,9 @@ const Navbar: FunctionComponent<Props> = (props) => {
 
     return (
         <NavbarWrapper>
-            <button>
+            <button onClick={() => {
+                console.log('menu')
+            }} className='menu'>
                 <Image src={menuIcon} alt={'menu-icon'} width={20}
                        height={20}/>
             </button>
@@ -43,6 +49,13 @@ const Navbar: FunctionComponent<Props> = (props) => {
                     <Image src={accountIcon} alt={'menu-icon'} width={20}
                            height={20}/>
                 </Link>
+                <button onClick={() => {
+                    console.log("card")
+                }}>
+                    <Image src={shoppingCartIcon} alt={'menu-icon'} width={20}
+                           height={20}/>
+                </button>
+
             </div>
 
         </NavbarWrapper>

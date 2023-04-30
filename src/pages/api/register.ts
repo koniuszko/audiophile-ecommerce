@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
         if (!user) {
             const newUser = User.create(req.body);
-            res.status(201).json({message: "User created!"})
+            res.status(201).json({message: "Your account has been created!"})
         } else {
             res.status(409).json({message: "User exists!"})
         }

@@ -4,7 +4,7 @@ import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
 import React, {useState} from "react";
 import {LoginUserProps} from "@/interfaces/login_interfaces";
-import {FormLabel, InputField, PrimaryButton} from "@/styles/global";
+import {ErrorMsg, FormLabel, InputField, PrimaryButton} from "@/styles/global";
 import {router} from "next/client";
 
 export const LoginWrapper = styled.section`
@@ -32,19 +32,15 @@ export const LoginWrapper = styled.section`
     }
   }
 
-
-  .error-message {
-    font-size: 12px;
-    color: #d82700;
-  }
 `
 
 
-export const loginUser = async ({email, password}: LoginUserProps) => {
+export const loginUser = async ({email, password, remember}: LoginUserProps) => {
     const res = await signIn("credentials", {
         redirect: false,
         email,
-        password
+        password,
+        remember
     })
     return res
 }
@@ -58,16 +54,19 @@ const LoginForm = () => {
             <Formik
                 initialValues={{
                     email: '',
-                    password: ''
+                    password: '',
+                    remember: false
                 }}
                 validationSchema={Yup.object({
                     email: Yup.string(),
-                    password: Yup.string()
+                    password: Yup.string(),
+                    remember: Yup.boolean()
                 })}
                 onSubmit={(values) => {
                     loginUser({
                         email: values.email,
-                        password: values.password
+                        password: values.password,
+                        remember: values.remember
                     }).then((res: SignInResponse | undefined) => {
                         if (res?.status === 401) {
                             setValidationError(true)
@@ -94,7 +93,7 @@ const LoginForm = () => {
                         <Field name="remember" type="checkbox"/>
                         <FormLabel className="form-label" htmlFor="remember">Remember me</FormLabel>
                     </div>
-                    {validationError && <p className="error-message">Incorrect email or password!</p>}
+                    {validationError && <ErrorMsg>Incorrect email or password!</ErrorMsg>}
                     <PrimaryButton type="submit">sign in</PrimaryButton>
                 </Form>
             </Formik>
