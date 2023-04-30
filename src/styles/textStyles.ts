@@ -14,3 +14,11 @@ export const H3 = styled.h3`
   letter-spacing: 0.86px;
   text-transform: uppercase;
 `
+
+export const H6 = styled.h6`
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 24px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+`

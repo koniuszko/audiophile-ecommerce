@@ -22,7 +22,7 @@ const RegistrationModal: React.FC<IRegistrationModalProps> = ({
                 </Paragraph>
                 <Link href={'/'}>
                     <PrimaryButton>
-                        go back
+                        back to home
                     </PrimaryButton>
                 </Link>
             </ModalContent>

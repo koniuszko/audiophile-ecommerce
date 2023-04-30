@@ -119,6 +119,6 @@ export const ModalContent = styled.div`
   background-color: #FFF;
   padding: 32px;
   border-radius: 8px;
-  text-align: ;
 `
+
 
