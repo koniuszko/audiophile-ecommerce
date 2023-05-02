@@ -75,10 +75,20 @@ export const PrimaryButton = styled(Button)`
   }
 `
 
-export const SecondaryButton = styled(Button)`
-  background-color: #FFF;
-  border: 1px solid #000;
+export const PrimaryBlackButton = styled(Button)`
+  background-color: #000;
+  border: none;
   color: #FFF;
+
+  &:hover {
+    background-color: #4C4C4C;
+  }
+`
+
+export const SecondaryButton = styled(Button)`
+  background-color: transparent;
+  border: 1px solid #000;
+  color: #000;
 
   &:hover {
     background-color: #000;

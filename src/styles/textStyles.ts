@@ -1,14 +1,60 @@
 import styled from "styled-components";
+import {OverlineProps} from "@/interfaces/interfaces";
 
 export const Paragraph = styled.p`
   font-size: 15px;
   font-weight: 500;
   line-height: 25px;
   color: #808080;
+  text-align: center;
+`
+
+export const WhiteParagraph = styled(Paragraph)`
+  color: #FFF;
+  font-weight: 400;
 `
 
 export const ParagraphBold = styled(Paragraph)`
   font-weight: bold;
+`
+
+export const Overline = styled.p<OverlineProps>`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  color: ${props => props.color};
+`
+
+export const ColorText = styled.span`
+  color: #D87D4A;
+`
+
+export const H1 = styled.h1`
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 40px;
+  letter-spacing: 1.29px;
+  text-transform: uppercase;
+  color: #FFF;
+  text-align: center;
+`
+
+export const H2 = styled.h2`
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 36px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+`
+
+export const WhiteH2 = styled(H2)`
+  color: #FFF;
+`
+export const BlackH2 = styled(H2)`
+  color: #000;
 `
 
 export const H3 = styled.h3`

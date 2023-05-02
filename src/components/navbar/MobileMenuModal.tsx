@@ -5,6 +5,7 @@ import Image from "next/image";
 import {H6} from "@/styles/textStyles";
 import {CategoryCardProps} from "@/interfaces/navbar_interfaces";
 import ShopLink from "@/components/shared/ShopLink";
+import {CategoryCardWrapper} from "@/styles/components";
 
 interface OwnProps {
     isOpen: boolean
@@ -29,28 +30,6 @@ const categories = [
         img: '/assets/shared/image-category-thumbnail-earphones.png'
     }]
 
-const CategoryCardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  background-color: #f1f1f1;
-  border-radius: 8px;
-  height: 165px;
-  position: relative;
-
-  .category-image {
-    transform: translateY(-40%);
-  }
-
-  .category-name {
-    transform: translateY(-52px);
-  }
-
-  .category-link {
-    transform: translateY(-52px);
-  }
-`
 
 const MobileMenuWrapper = styled.div<{ isOpen: boolean }>`
   position: fixed;

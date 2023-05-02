@@ -1,4 +1,4 @@
-import ChildrenProps from "@/interfaces/interfaces";
+import {ChildrenProps} from "@/interfaces/interfaces";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 

@@ -1,0 +1,19 @@
+{
+  "categories": [
+    {
+      "name": "headphones",
+      "path": "/headphones",
+      "img": "/assets/shared/image-category-thumbnail-headphones.png"
+    },
+    {
+      "name": "speakers",
+      "path": "/speakers",
+      "img": "/assets/shared/image-category-thumbnail-speakers.png"
+    },
+    {
+      "name": "earphones",
+      "path": "/earphones",
+      "img": "/assets/shared/image-category-thumbnail-earphones.png"
+    }
+  ]
+}
