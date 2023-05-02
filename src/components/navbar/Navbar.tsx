@@ -1,4 +1,4 @@
-import React, {FunctionComponent, MouseEventHandler, useState} from 'react';
+import React, {FunctionComponent, MouseEventHandler, useEffect, useState} from 'react';
 import styled from 'styled-components'
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +9,8 @@ import exitIcon from '@assets/icons/icon-xmark.svg'
 import accountIcon from '@assets/icons/icon-user.svg'
 import shoppingCartIcon from '@assets/icons/icon-cart.svg'
 import MobileMenuModal from "@/components/navbar/MobileMenuModal";
+import {router} from "next/client";
+
 
 interface OwnProps {
 }
@@ -41,6 +43,15 @@ const Navbar: FunctionComponent<Props> = (props) => {
         event.preventDefault();
         setIsMenuOpen(!isMenuOpen);
     }
+
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [isMenuOpen])
+
 
     return (
         <>

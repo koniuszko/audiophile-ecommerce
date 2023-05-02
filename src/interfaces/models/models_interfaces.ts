@@ -1,4 +1,4 @@
-import {PaidCompletion, PaymentMethod, UserRole} from "@/interfaces/models/models_enums";
+import {PaidCompletion, PaymentMethod} from "@/interfaces/models/models_enums";
 
 export interface IUser {
     userId: string,
@@ -24,14 +24,24 @@ export interface IOrder {
     userId: string,
     userName: string,
     orderDate: string,
-    items: IItem[],
+    items: IProduct[],
     paymentMethod: PaymentMethod,
     paid?: PaidCompletion,
 }
 
-export interface IItem {
+export interface IProduct {
     productId: string,
     productName: string,
-    quantity: number,
-    price: number
+    productTitle: string,
+    price: number,
+    description: string,
+    category: 'headphones' | 'speakers' | 'earphones',
+    features: string[],
+    inTheBox: [
+        {
+            quantity: number,
+            item: string,
+        }
+    ],
+    isNewProduct?: boolean,
 }

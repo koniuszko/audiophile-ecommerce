@@ -6,6 +6,7 @@ import {H6} from "@/styles/textStyles";
 import {CategoryCardProps} from "@/interfaces/navbar_interfaces";
 import ShopLink from "@/components/shared/ShopLink";
 import {CategoryCardWrapper} from "@/styles/components";
+import {GetStaticProps} from "next";
 
 interface OwnProps {
     isOpen: boolean
@@ -16,17 +17,17 @@ type Props = OwnProps;
 const categories = [
     {
         name: "headphones",
-        path: '/headphones',
+        path: '/category/headphones',
         img: '/assets/shared/image-category-thumbnail-headphones.png'
     },
     {
         name: "speakers",
-        path: '/speakers',
+        path: '/category/speakers',
         img: '/assets/shared/image-category-thumbnail-speakers.png'
     },
     {
         name: "earphones",
-        path: '/earphones',
+        path: '/category/earphones',
         img: '/assets/shared/image-category-thumbnail-earphones.png'
     }]
 
@@ -86,3 +87,14 @@ const MobileMenuModal: FunctionComponent<Props> = ({isOpen}) => {
 };
 
 export default MobileMenuModal;
+
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    const res = await import("@/data/data.json");
+    const categories = await res.categories
+    return {
+        props: {
+            categories
+        }
+    }
+}
