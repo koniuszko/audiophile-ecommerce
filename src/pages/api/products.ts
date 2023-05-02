@@ -35,4 +35,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             res.status(409).json({message: "Product exists!"})
         }
     }
+    if (req.method === 'GET') {
+        await dbConnect();
+        const products = await Product.find();
+        res.status(200).json(products)
+    }
 }

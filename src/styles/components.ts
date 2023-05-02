@@ -9,7 +9,7 @@ export const CategoryCardWrapper = styled.div`
   border-radius: 8px;
   height: 165px;
   position: relative;
-
+ 
   .category-image {
     transform: translateY(-40%);
   }

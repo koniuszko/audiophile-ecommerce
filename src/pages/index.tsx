@@ -18,9 +18,7 @@ export default function Home(categories: { categories: CategoryCardProps[] }) {
 
 export const getServerSideProps = async () => {
     const res = await import("@/data/data.json");
-    console.log(res.categories)
     const categories = await res.categories
-    console.log(categories)
     return {
         props: {
             categories

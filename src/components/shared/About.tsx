@@ -11,7 +11,7 @@ interface OwnProps {
 type Props = OwnProps;
 
 const AboutWrapper = styled.section`
-  padding: 120px 24px;
+  padding: 0 24px 120px;
   text-align: center;
 
   img {

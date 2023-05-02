@@ -1,5 +1,4 @@
 import React, {FunctionComponent} from 'react';
-import {CategoryCardProps} from "@/interfaces/navbar_interfaces";
 import Image from "next/image";
 import {H6} from "@/styles/textStyles";
 import ShopLink from "@/components/shared/ShopLink";
@@ -7,17 +6,19 @@ import {CategoryCardWrapper} from "@/styles/components";
 import styled from "styled-components";
 
 interface OwnProps {
-    categories: CategoryCardProps[]
+    categories: string[]
 }
 
 type Props = OwnProps;
 
-const CategoryCard = ({name, img, path}: CategoryCardProps) => {
+const CategoryCard = ({category}: { category: string }) => {
     return (
         <CategoryCardWrapper>
-            <Image className="category-image" src={img} alt={name} width={130} height={130}/>
-            <H6 className="category-name">{name}</H6>
-            <ShopLink className="category-link" path={path}/>
+            <Image className="category-image" src={`/assets/shared/image-category-thumbnail-${category}.png`}
+                   alt={category}
+                   width={130} height={130}/>
+            <H6 className="category-name">{category}</H6>
+            <ShopLink className="category-link" path={`/category/${category}`}/>
         </CategoryCardWrapper>
     )
 }
@@ -31,11 +32,10 @@ const NavWrapper = styled.div`
 `
 
 const CategoriesNav: FunctionComponent<Props> = ({categories}) => {
-    console.log(categories)
     return (
         <NavWrapper>
             {categories.map((category, index) => (
-                <CategoryCard key={index} {...category}/>
+                <CategoryCard key={index} category={category}/>
             ))}
         </NavWrapper>
     );

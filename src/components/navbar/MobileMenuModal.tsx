@@ -54,6 +54,7 @@ const MobileMenuContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 68px;
+  z-index: 9999;
 `;
 
 

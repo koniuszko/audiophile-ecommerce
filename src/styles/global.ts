@@ -144,3 +144,13 @@ export const NavLink = styled(Link)`
   color: #FFF;
   text-transform: uppercase;
 `
+
+export const StyledHeader = styled.header`
+  background-color: #191919;
+  height: 102px;
+  color: #FFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`

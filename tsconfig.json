@@ -25,7 +25,9 @@
       "@assets/*": [
         "./public/assets/*"
       ]
-    }
+    },
+    "target": "es2017",
+    "downlevelIteration": true
   },
   "include": [
     "next-env.d.ts",
