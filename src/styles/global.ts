@@ -1,6 +1,7 @@
 import styled, {createGlobalStyle} from "styled-components";
 import {Field} from "formik";
 import {IModalProps} from "@/interfaces/login_interfaces";
+import Link from "next/link";
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -24,6 +25,10 @@ export const GlobalStyle = createGlobalStyle`
 
   img {
     display: block;
+  }
+
+  li {
+    list-style: none;
   }
 `
 
@@ -121,4 +126,11 @@ export const ModalContent = styled.div`
   border-radius: 8px;
 `
 
-
+export const NavLink = styled(Link)`
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: #FFF;
+  text-transform: uppercase;
+`

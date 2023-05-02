@@ -6,13 +6,12 @@ import styled from "styled-components";
 
 interface OwnProps {
     path: string
+    className: string
 }
 
 type Props = OwnProps;
 
 const LinkWrapper = styled.div`
-
-
   a {
     text-decoration: none;
     font-size: 13px;
@@ -25,11 +24,11 @@ const LinkWrapper = styled.div`
   }
 
 `
-const ShopLink: FunctionComponent<Props> = ({path}) => {
+const ShopLink: FunctionComponent<Props> = ({path, className}) => {
 
     return (
 
-        <LinkWrapper>
+        <LinkWrapper className={className}>
             <Link href={path}>
                 Shop
                 <Image src={arrowIcon} alt={"arrow-icon"} width={8} height={12}/>

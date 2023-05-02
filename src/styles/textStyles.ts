@@ -7,6 +7,10 @@ export const Paragraph = styled.p`
   color: #808080;
 `
 
+export const ParagraphBold = styled(Paragraph)`
+  font-weight: bold;
+`
+
 export const H3 = styled.h3`
   font-size: 24px;
   font-weight: bold;

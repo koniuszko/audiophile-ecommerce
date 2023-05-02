@@ -1,5 +1,6 @@
 import ChildrenProps from "@/interfaces/interfaces";
 import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/footer/Footer";
 
 
 const MainLayout = ({children}: ChildrenProps) => {
@@ -7,6 +8,7 @@ const MainLayout = ({children}: ChildrenProps) => {
         <>
             <Navbar/>
             {children}
+            <Footer/>
         </>
     )
 }

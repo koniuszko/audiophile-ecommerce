@@ -38,6 +38,18 @@ const CategoryCardWrapper = styled.div`
   border-radius: 8px;
   height: 165px;
   position: relative;
+
+  .category-image {
+    transform: translateY(-40%);
+  }
+
+  .category-name {
+    transform: translateY(-52px);
+  }
+
+  .category-link {
+    transform: translateY(-52px);
+  }
 `
 
 const MobileMenuWrapper = styled.div<{ isOpen: boolean }>`
@@ -54,7 +66,7 @@ const MobileMenuWrapper = styled.div<{ isOpen: boolean }>`
 const MobileMenuContent = styled.div`
   background-color: #ffffff;
   width: 100%;
-  padding: 24px;
+  padding: 84px 24px 24px;
   border-radius: 0 0 8px 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   max-height: calc(100vh - 90px);
@@ -68,11 +80,9 @@ const MobileMenuContent = styled.div`
 const CategoryCard = ({name, img, path}: CategoryCardProps) => {
     return (
         <CategoryCardWrapper>
-            <Image src={img} alt={name} width={100} height={100}/>
-            <H6>{name}</H6>
-            <div>
-                <ShopLink path={path}/>
-            </div>
+            <Image className="category-image" src={img} alt={name} width={130} height={130}/>
+            <H6 className="category-name">{name}</H6>
+            <ShopLink className="category-link" path={path}/>
         </CategoryCardWrapper>
     )
 }
