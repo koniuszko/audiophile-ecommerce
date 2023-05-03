@@ -4,6 +4,12 @@ export interface CategoryPageProps {
     currentCategory: string,
 }
 
+export interface ProductPageProps {
+    product: ProductProps[],
+    products: ProductProps[],
+    categories: string[],
+}
+
 export interface ProductProps {
     _id: string,
     productName: string,

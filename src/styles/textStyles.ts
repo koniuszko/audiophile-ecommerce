@@ -22,6 +22,14 @@ export const ParagraphBold = styled(Paragraph)`
   font-weight: bold;
 `
 
+export const PriceText = styled.p`
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 25px;
+  letter-spacing: 1.29px;
+  color: #000;
+`
+
 export const Overline = styled.p<OverlineProps>`
   font-size: 14px;
   font-weight: 400;
@@ -66,6 +74,14 @@ export const H3 = styled.h3`
   font-weight: bold;
   line-height: 28px;
   letter-spacing: 0.86px;
+  text-transform: uppercase;
+`
+
+export const H4 = styled.h4`
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 28px;
+  letter-spacing: 1.71px;
   text-transform: uppercase;
 `
 
