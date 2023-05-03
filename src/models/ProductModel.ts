@@ -6,6 +6,10 @@ const productModel = new Schema<IProduct>({
         type: String,
         required: true,
     },
+    shortName: {
+        type: String,
+        required: true,
+    },
     productTitle: {
         type: String,
         required: true,

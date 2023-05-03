@@ -32,6 +32,8 @@ export interface IOrder {
 export interface IProduct {
     productId: string,
     productName: string,
+
+    shortName: string,
     productTitle: string,
     price: number,
     description: string,

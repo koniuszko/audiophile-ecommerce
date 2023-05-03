@@ -10,7 +10,7 @@ import NewProduct from "@/components/shared/NewProduct";
 import {BlackH2, ColorText, H3, Paragraph, ParagraphBold, PriceText} from "@/styles/textStyles";
 import AddToCartButton from "@/components/product/AddToCartButton";
 import QuantityControl from "@/components/product/QuantityControl";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import GoBackButton from "@/components/shared/GoBackButton";
 import dynamic from "next/dynamic";
 
@@ -60,6 +60,10 @@ export default function Product({categories, product, products}: ProductPageProp
     const [quantity, setQuantity] = useState(1)
     const [item] = product
 
+    useEffect(() => {
+        setQuantity(1)
+    }, [item])
+
     return (
         <MainLayout>
             <ProductSection>
@@ -79,7 +83,7 @@ export default function Product({categories, product, products}: ProductPageProp
                 </PriceText>
                 <ButtonsWrapper>
                     <QuantityControl quantity={quantity} setQuantity={setQuantity}/>
-                    <AddToCartButton/>
+                    <AddToCartButton product={item} quantity={quantity}/>
                 </ButtonsWrapper>
                 <H3>
                     Features

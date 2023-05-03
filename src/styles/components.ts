@@ -9,7 +9,7 @@ export const CategoryCardWrapper = styled.div`
   border-radius: 8px;
   height: 165px;
   position: relative;
- 
+
   .category-image {
     transform: translateY(-40%);
   }
@@ -20,5 +20,17 @@ export const CategoryCardWrapper = styled.div`
 
   .category-link {
     transform: translateY(-52px);
+  }
+`
+
+
+export const GrayButtonWrapper = styled.button`
+  font-size: 15px;
+  font-weight: 500;
+  color: #808080;
+  width: 80px;
+
+  &:hover {
+    color: #d87d4a;
   }
 `

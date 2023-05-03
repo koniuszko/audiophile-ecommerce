@@ -35,7 +35,7 @@ const Hero: FunctionComponent<Props> = (props) => {
                 Experience natural, lifelike audio and exceptional build quality made for the passionate music
                 enthusiast.
             </LightParagraph>
-            <SeeProductButton type={'primary'} path={'/products/xx99-mark-two-headphones'}/>
+            <SeeProductButton type={'primary'} path={'/products/product-xx99-mark-two-headphones'}/>
         </HeroWrapper>
     );
 };

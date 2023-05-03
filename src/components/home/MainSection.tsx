@@ -87,13 +87,13 @@ const MainSection: FunctionComponent<Props> = (props) => {
                 <WhiteParagraph>
                     Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.
                 </WhiteParagraph>
-                <SeeProductButton type={'primary-black'} path={'/products/zx9-speaker'}/>
+                <SeeProductButton type={'primary-black'} path={'/products/product-zx9-speaker'}/>
             </MainContainer>
             <SecondaryContainer>
                 <BlackH2>
                     ZX7 SPEAKER
                 </BlackH2>
-                <SeeProductButton type={"secondary"} path={'/products/zx7-speaker'}/>
+                <SeeProductButton type={"secondary"} path={'/products/product-zx7-speaker'}/>
                 <Image src={zx7Speaker} alt={"zx7-speaker"} width={327} height={320}/>
             </SecondaryContainer>
             <TertiaryContainer>
@@ -103,7 +103,7 @@ const MainSection: FunctionComponent<Props> = (props) => {
                 <BlackH2>
                     YX1 EARPHONES
                 </BlackH2>
-                <SeeProductButton type={"secondary"} path={'/products/yx1-earphones'}/>
+                <SeeProductButton type={"secondary"} path={'/products/product-yx1-earphones'}/>
             </TertiaryContainer>
         </MainWrapper>
     );

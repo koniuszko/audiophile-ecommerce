@@ -13,6 +13,7 @@ export interface ProductPageProps {
 export interface ProductProps {
     _id: string,
     productName: string,
+    shortName: string,
     productTitle: string,
     price: number,
     description: string,

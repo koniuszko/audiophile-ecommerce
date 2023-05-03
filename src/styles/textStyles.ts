@@ -14,6 +14,10 @@ export const WhiteParagraph = styled(Paragraph)`
   font-weight: 400;
 `
 
+export const BlackParagraph = styled(Paragraph)`
+  color: #000;
+`
+
 export const LightParagraph = styled(Paragraph)`
   color: #C6C6C6;;
 `

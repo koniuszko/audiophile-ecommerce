@@ -1,0 +1,197 @@
+import React, {FunctionComponent} from 'react';
+import {ModalWrapper, PrimaryButton} from "@/styles/global";
+import {BlackParagraph, H3, H6, Paragraph, PriceText} from "@/styles/textStyles";
+import Link from "next/link";
+import styled from "styled-components";
+import {useDispatch, useSelector} from "react-redux";
+import {clearCart, decreaseItemAmount, increaseItemAmount} from "@/features/cart/cartSlice";
+import {cartItem, cartState} from "@/interfaces/cart_interfaces";
+import {GrayButtonWrapper} from "@/styles/components";
+import Image from "next/image";
+
+
+interface CartProps {
+    isOpen: boolean;
+    setIsOpen: (isOpen: boolean) => void;
+}
+
+type Props = CartProps;
+
+const CartContentWrapper = styled.div`
+  width: 327px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  position: absolute;
+  top: 114px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #FFF;
+  padding: 32px 28px;
+  border-radius: 8px;
+
+  .cart-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart-total {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .cart-items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+`
+
+const CartItemWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    border-radius: 8px;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    p, h6 {
+      text-align: left;
+    }
+  }
+
+  .item-quantity {
+    background-color: #f1f1f1;
+    height: 48px;
+    width: 120px;
+    display: flex;
+
+    button {
+      width: 40px;
+      font-size: 13px;
+      font-weight: bold;
+
+      &:hover {
+        color: #d87d4a;
+      }
+    }
+
+    input {
+      width: 40px;
+      border: none;
+      background-color: transparent;
+      text-align: center;
+      text-selection: none;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+  }
+`
+
+const CartItem = (item: cartItem) => {
+    const dispatch = useDispatch();
+
+    function incrementQuantity(product: any) {
+        const quantity = 1;
+        dispatch(increaseItemAmount({product, quantity}));
+    }
+
+    function decrementQuantity(product: any) {
+        const quantity = 1;
+        dispatch(decreaseItemAmount({product, quantity}));
+    }
+
+    return (
+        <CartItemWrapper>
+            <div className="cart-item">
+                <Image src={`/assets/cart/${item.product.productName}.jpg`}
+                       alt={item.product.productName} width={64} height={64}/>
+                <div className="item-details">
+                    <BlackParagraph>
+                        {item.product.shortName.toUpperCase()}
+                    </BlackParagraph>
+                    <Paragraph>
+                        $ {item.product.price}
+                    </Paragraph>
+                </div>
+            </div>
+            <div className="item-quantity">
+                <button onClick={() => decrementQuantity(item.product)}>-</button>
+                <input type="text" value={item.quantity} readOnly/>
+                <button onClick={() => incrementQuantity(item.product)}>+</button>
+            </div>
+        </CartItemWrapper>
+    )
+}
+
+const QuantityWrapper = styled.div``
+
+const ShoppingCart: FunctionComponent<Props> = ({isOpen, setIsOpen}) => {
+    const dispatch = useDispatch();
+    const cartItems = useSelector((state: { cart: cartState }) => state.cart.items);
+
+    const removeAllItems = () => {
+        dispatch(clearCart());
+    }
+
+    const totalSummary = (items: any) => {
+        let total = 0;
+        items.forEach((item: any) => {
+            total += item.product.price * item.quantity;
+        })
+        return total;
+    }
+    console.log(cartItems)
+    return (
+        <div>
+            <ModalWrapper onClick={() =>
+                setIsOpen(false)
+            } isOpen={isOpen}>
+                <CartContentWrapper>
+                    <div className="cart-header">
+                        <H6>Cart({cartItems.length})</H6>
+                        <GrayButtonWrapper onClick={() => {
+                            removeAllItems()
+                        }}>
+                            Remove all
+                        </GrayButtonWrapper>
+                    </div>
+                    <div className="cart-items">
+                        {cartItems.map((item) =>
+                            <CartItem key={item.product.productName}
+                                      {...item}/>
+                        )}
+                    </div>
+                    <div className="cart-total">
+                        <Paragraph>
+                            TOTAL
+                        </Paragraph>
+                        <PriceText>
+                            $ {totalSummary(cartItems)}
+                        </PriceText>
+                    </div>
+                    <Link href={'/checkout'}>
+                        <PrimaryButton>
+                            checkout
+                        </PrimaryButton>
+                    </Link>
+                </CartContentWrapper>
+            </ModalWrapper>
+        </div>
+    );
+};
+
+export default ShoppingCart;

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {H3, H4} from "@/styles/textStyles";
 import Image from "next/image";
 import SeeProductButton from "@/components/shared/SeeProductButton";
+import {useRouter} from "next/router";
 
 interface OwnProps {
     products: ProductProps[]
@@ -32,9 +33,7 @@ const OtherProductsWrapper = styled.div`
   gap: 56px;
 `
 
-
 const OtherProductCard = ({product}: { product: ProductProps }) => {
-
     return (
         <OtherProductCardWrapper>
             <Image src={`/assets/shared/mobile/${product.productName}.jpg`}
@@ -48,8 +47,12 @@ const OtherProductCard = ({product}: { product: ProductProps }) => {
 }
 
 const OtherProducts: FunctionComponent<Props> = ({products}) => {
-    const recommendedProducts = products.filter(product => product.category === "headphones" || product.category === "speakers");
+    const router = useRouter();
+
+    const recommendedProducts = products.filter(product => product.category === "headphones" || product.category === "speakers").filter(product => product.productName !== router.query.name);
+
     const randomProducts = recommendedProducts.sort(() => Math.random() - Math.random()).slice(0, 3);
+
     return (
         <OtherProductsWrapper>
             <H3>
