@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.17",
+    "@radix-ui/react-radio-group": "^1.1.2",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/http-errors": "^2.0.1",
     "@types/node": "18.16.3",

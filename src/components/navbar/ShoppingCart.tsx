@@ -74,12 +74,12 @@ const CartItemWrapper = styled.div`
 
   .item-quantity {
     background-color: #f1f1f1;
-    height: 48px;
-    width: 120px;
+    height: 32px;
+    width: 96px;
     display: flex;
 
     button {
-      width: 40px;
+      width: 32px;
       font-size: 13px;
       font-weight: bold;
 
@@ -89,7 +89,7 @@ const CartItemWrapper = styled.div`
     }
 
     input {
-      width: 40px;
+      width: 32px;
       border: none;
       background-color: transparent;
       text-align: center;
@@ -137,10 +137,9 @@ const CartItem = (item: cartItem) => {
     )
 }
 
-const QuantityWrapper = styled.div``
-
 const ShoppingCart: FunctionComponent<Props> = ({isOpen, setIsOpen}) => {
     const dispatch = useDispatch();
+
     const cartItems = useSelector((state: { cart: cartState }) => state.cart.items);
 
     const removeAllItems = () => {
@@ -157,9 +156,7 @@ const ShoppingCart: FunctionComponent<Props> = ({isOpen, setIsOpen}) => {
     console.log(cartItems)
     return (
         <div>
-            <ModalWrapper onClick={() =>
-                setIsOpen(false)
-            } isOpen={isOpen}>
+            <ModalWrapper isOpen={isOpen}>
                 <CartContentWrapper>
                     <div className="cart-header">
                         <H6>Cart({cartItems.length})</H6>

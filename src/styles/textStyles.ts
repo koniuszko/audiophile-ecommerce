@@ -18,6 +18,10 @@ export const BlackParagraph = styled(Paragraph)`
   color: #000;
 `
 
+export const ColorParagraph = styled(Paragraph)`
+  color: #d87d4a;
+`
+
 export const LightParagraph = styled(Paragraph)`
   color: #C6C6C6;;
 `
@@ -41,6 +45,15 @@ export const Overline = styled.p<OverlineProps>`
   letter-spacing: 10px;
   text-transform: uppercase;
   color: ${props => props.color};
+`
+
+export const Subtitle = styled.p`
+  font-size: 13px;
+  line-height: 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #d87d4a;
 `
 
 export const ColorText = styled.span`

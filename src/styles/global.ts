@@ -55,6 +55,29 @@ export const InputField = styled(Field)`
   }
 `
 
+export const RadioField = styled(Field)`
+  height: 56px;
+  border: 1px solid #CFCFCF;
+  border-radius: 8px;
+  padding: 18px 24px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: -0.25px;
+  color: #CFCFCF;
+
+  &::placeholder {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+
+  &:focus {
+    color: #191919;
+    border-color: #D87D4A;
+    caret-color: #D87D4A;
+  }
+`
+
 const Button = styled.button`
   width: 160px;
   height: 48px;
@@ -97,6 +120,14 @@ export const SecondaryButton = styled(Button)`
 `
 
 export const FormLabel = styled.label`
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: -0.21px;
+`
+
+export const RadioLabel = styled.label`
+  height: 56px;
+  border: 1px solid #CFCFCF;
   font-size: 12px;
   font-weight: bold;
   letter-spacing: -0.21px;

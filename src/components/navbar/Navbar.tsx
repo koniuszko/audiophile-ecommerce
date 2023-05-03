@@ -7,8 +7,10 @@ import menuIcon from '@assets/icons/icon-menu.svg'
 import exitIcon from '@assets/icons/icon-xmark.svg'
 import accountIcon from '@assets/icons/icon-user.svg'
 import shoppingCartIcon from '@assets/icons/icon-cart.svg'
+import shoppingCartProductsIcon from '@assets/icons/icon-cart-products.svg'
 import MobileMenuModal from "@/components/navbar/MobileMenuModal";
 import ShoppingCart from "@/components/navbar/ShoppingCart";
+import {useSelector} from "react-redux";
 
 
 interface OwnProps {
@@ -27,12 +29,12 @@ const NavbarWrapper = styled.nav`
   z-index: 9999;
 
   .menu {
-    margin-right: 26px;
+    margin-right: 32px;
   }
 
   .account {
     display: flex;
-    gap: 6px
+    gap: 12px
   }
 `
 
@@ -40,6 +42,8 @@ const NavbarWrapper = styled.nav`
 const Navbar: FunctionComponent<Props> = (props) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
+
+    const cartItems = useSelector((state: any) => state.cart.items);
 
 
     useEffect(() => {
@@ -64,16 +68,19 @@ const Navbar: FunctionComponent<Props> = (props) => {
                     <Image src={logo} alt={'logo'} width={143} height={25}/>
                 </Link>
                 <div className="account">
+
+                    <button onClick={() => {
+                        setIsCartOpen(!isCartOpen);
+                    }}>
+                        <Image src={cartItems.length > 0 ? shoppingCartProductsIcon : shoppingCartIcon}
+                               alt={'menu-icon'}
+                               width={20}
+                               height={20}/>
+                    </button>
                     <Link href={'/login'}>
                         <Image src={accountIcon} alt={'menu-icon'} width={20}
                                height={20}/>
                     </Link>
-                    <button onClick={() => {
-                        setIsCartOpen(!isCartOpen);
-                    }}>
-                        <Image src={shoppingCartIcon} alt={'menu-icon'} width={20}
-                               height={20}/>
-                    </button>
                 </div>
             </NavbarWrapper>
             <MobileMenuModal isOpen={isMenuOpen}/>

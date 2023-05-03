@@ -5,6 +5,8 @@ import axios from "axios";
 import {ErrorMsg, FormLabel, InputField, PrimaryButton} from "@/styles/global";
 import StatusModal from "@/components/login/StatusModal";
 import {useState} from "react";
+import {sleep} from "@/utils/helpers";
+import {emailRegex, passwordRegex} from "@/utils/regex";
 
 export const RegisterWrapper = styled.section`
   width: 280px;
@@ -38,11 +40,6 @@ export const RegisterWrapper = styled.section`
 `
 
 const url = "/api/register"
-
-const passwordRegex = new RegExp(
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)
-const emailRegex = new RegExp(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g)
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const RegisterForm = () => {
     const [resMessage, setResMessage] = useState("");
