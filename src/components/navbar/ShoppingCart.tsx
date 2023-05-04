@@ -4,10 +4,11 @@ import {BlackParagraph, H3, H6, Paragraph, PriceText} from "@/styles/textStyles"
 import Link from "next/link";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {clearCart, decreaseItemAmount, increaseItemAmount} from "@/features/cart/cartSlice";
+import {clearCart, decreaseItemAmount, increaseItemAmount, selectCartItems} from "@/features/cart/cartSlice";
 import {cartItem, cartState} from "@/interfaces/cart_interfaces";
 import {GrayButtonWrapper} from "@/styles/components";
 import Image from "next/image";
+import {totalSummary} from "@/utils/helpers";
 
 
 interface CartProps {
@@ -146,14 +147,6 @@ const ShoppingCart: FunctionComponent<Props> = ({isOpen, setIsOpen}) => {
         dispatch(clearCart());
     }
 
-    const totalSummary = (items: any) => {
-        let total = 0;
-        items.forEach((item: any) => {
-            total += item.product.price * item.quantity;
-        })
-        return total;
-    }
-    console.log(cartItems)
     return (
         <div>
             <ModalWrapper isOpen={isOpen}>

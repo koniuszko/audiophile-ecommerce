@@ -7,6 +7,5 @@ export interface cartItem {
 
 export interface cartState {
     items: cartItem[]
-    cartTotal?: number,
-    cartItemsCount?: number
+    
 }

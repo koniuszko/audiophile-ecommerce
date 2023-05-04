@@ -6,12 +6,12 @@ import axios from "axios";
 import {ErrorMsg, FormLabel, InputField, PrimaryButton,} from "@/styles/global";
 import StatusModal from "@/components/login/StatusModal";
 import {useState} from "react";
-import {sleep} from "@/utils/helpers";
+import {sleep, totalSummary, VatValue} from "@/utils/helpers";
 import {BlackH2, BlackParagraph, ColorParagraph, H6, Paragraph, Subtitle} from "@/styles/textStyles";
 import {emailRegex} from "@/utils/regex";
 import {cartItem, cartState} from "@/interfaces/cart_interfaces";
 import {useDispatch, useSelector} from "react-redux";
-import {decreaseItemAmount, increaseItemAmount} from "@/features/cart/cartSlice";
+import {decreaseItemAmount, increaseItemAmount, selectCartItems} from "@/features/cart/cartSlice";
 import Image from "next/image";
 import PaymentRadio from "@/components/checkout/PaymentRadio";
 
@@ -141,7 +141,23 @@ const CartItem = (item: cartItem) => {
 const CheckoutForm: FunctionComponent<Props> = (props) => {
     const [radioValue, setRadioValue] = useState('credit-card');
 
-    const cartItems = useSelector((state: { cart: cartState }) => state.cart.items);
+    const cartItems = useSelector(selectCartItems);
+
+    const shippingFee = cartItems.length > 0 ? 50 : 0;
+
+    const checkoutHandler = async (address: any, payment: any, products: any) => {
+        await sleep(500);
+        axios.post("/api/checkout", {address, payment, products})
+            .then(res => {
+                console.log(res);
+                if (res.status === 200) {
+                    console.log(res.data.url)
+                    window.location.href = res.data.url;
+                }
+            })
+            .catch(err => console.log(err))
+
+    }
 
     return (
         <CheckoutWrapper>
@@ -154,23 +170,10 @@ const CheckoutForm: FunctionComponent<Props> = (props) => {
                     city: '',
                     zip: '',
                     country: '',
-                    payment: '',
+
                 }}
-                validationSchema={Yup.object({
-                    name: Yup.string().required('Required').min(3, "Must be at least 3 characters long").max(30, 'Must be 30 characters or less'),
-                    email: Yup.string().required('Required').matches(emailRegex, "Email is wrong!"),
-                })}
-                onSubmit={async (values) => {
-                    await sleep(500);
-                    axios.post("/api/checkout", values)
-                        .then(res => {
-                            console.log(res);
-                            if (res.status === 201) {
-                                console.log('success  201')
-                            }
-                        })
-                        .catch(err => console.log(err))
-                }}
+                validationSchema={null}
+                onSubmit={(values) => checkoutHandler(values, radioValue, cartItems)}
             >
                 <Form className="form">
                     <div className="checkout">
@@ -247,7 +250,7 @@ const CheckoutForm: FunctionComponent<Props> = (props) => {
                                     TOTAL
                                 </Paragraph>
                                 <BlackParagraph>
-                                    $ cena
+                                    $ {totalSummary(cartItems)}
                                 </BlackParagraph>
                             </div>
                             <div className="price shipping">
@@ -255,7 +258,7 @@ const CheckoutForm: FunctionComponent<Props> = (props) => {
                                     SHIPPING
                                 </Paragraph>
                                 <BlackParagraph>
-                                    $ 50
+                                    $ {shippingFee}
                                 </BlackParagraph>
                             </div>
                             <div className="price vat">
@@ -263,7 +266,7 @@ const CheckoutForm: FunctionComponent<Props> = (props) => {
                                     VAT (INCLUDED)
                                 </Paragraph>
                                 <BlackParagraph>
-                                    $ cena
+                                    $ {VatValue(cartItems)}
                                 </BlackParagraph>
                             </div>
                         </div>
@@ -272,7 +275,7 @@ const CheckoutForm: FunctionComponent<Props> = (props) => {
                                 GRAND TOTAL
                             </Paragraph>
                             <ColorParagraph>
-                                $ cena
+                                $ {totalSummary(cartItems) + shippingFee}
                             </ColorParagraph>
                         </div>
                         <PrimaryButton type="submit">

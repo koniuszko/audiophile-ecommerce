@@ -1,5 +1,3 @@
-import {PaidCompletion, PaymentMethod} from "@/interfaces/models/models_enums";
-
 export interface IUser {
     userId: string,
     name: string,
@@ -12,6 +10,7 @@ export interface IUser {
 
 export interface IAddress {
     name: string,
+    email: string,
     phone: string,
     street: string,
     postcode: string,
@@ -21,12 +20,12 @@ export interface IAddress {
 
 export interface IOrder {
     orderId: string,
-    userId: string,
-    userName: string,
+    userId?: string,
+    address: IAddress,
     orderDate: string,
     items: IProduct[],
-    paymentMethod: PaymentMethod,
-    paid?: PaidCompletion,
+    paymentMethod: "credit-card" | "cash-on-delivery",
+    paid: 0 | 1,
 }
 
 export interface IProduct {
