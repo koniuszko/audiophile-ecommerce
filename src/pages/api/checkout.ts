@@ -1,6 +1,6 @@
 import {dbConnect} from "@/utils/dbConnect";
 import {NextApiRequest, NextApiResponse} from "next";
-import {IProduct} from "@/interfaces/models/models_interfaces";
+import {IProduct} from "@/interfaces/models_interfaces";
 import Order from "@/models/OrderModel";
 
 
@@ -77,7 +77,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         line_items: cartItems,
         mode: 'payment',
         customer_email: address.email,
-        success_url: `${req.headers.origin}/?success=true`,
+        success_url: `${req.headers.origin}/?success=true&orderId=${order._id.toString()}`,
         cancel_url: `${req.headers.origin}/?canceled=true`,
         metadata: {orderId: order._id.toString()}
     });

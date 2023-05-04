@@ -149,6 +149,7 @@ export const ModalWrapper = styled.div<IModalProps>`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
+
 `;
 
 export const ModalContent = styled.div`
@@ -165,6 +166,11 @@ export const ModalContent = styled.div`
   background-color: #FFF;
   padding: 32px;
   border-radius: 8px;
+
+  h3, p {
+    text-align: left;
+  }
+
 `
 
 export const NavLink = styled(Link)`

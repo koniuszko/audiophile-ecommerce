@@ -15,6 +15,6 @@ export const VatValue = (items: cartItem[]) => {
     items.forEach((item: any) => {
         total += item.product.price * item.quantity;
     })
-    return (total * 0.2).toFixed(0);
+    return (total * 0.2).toFixed();
 }
 

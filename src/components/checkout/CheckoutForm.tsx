@@ -138,7 +138,7 @@ const CartItem = (item: cartItem) => {
 }
 
 
-const CheckoutForm: FunctionComponent<Props> = (props) => {
+const CheckoutForm: FunctionComponent<Props> = () => {
     const [radioValue, setRadioValue] = useState('credit-card');
 
     const cartItems = useSelector(selectCartItems);
@@ -149,9 +149,7 @@ const CheckoutForm: FunctionComponent<Props> = (props) => {
         await sleep(500);
         axios.post("/api/checkout", {address, payment, products})
             .then(res => {
-                console.log(res);
                 if (res.status === 200) {
-                    console.log(res.data.url)
                     window.location.href = res.data.url;
                 }
             })
