@@ -12,7 +12,6 @@ import {GetServerSidePropsContext} from "next";
 
 export default function Home({categories, order}: HomePageProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    // console.log(order)
     useEffect(() => {
         if (window.location.href.includes("success")) {
             setIsModalOpen(true)

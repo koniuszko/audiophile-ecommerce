@@ -2,13 +2,13 @@ import React, {FunctionComponent} from 'react';
 import styled from "styled-components";
 import Image from "next/image";
 
-import mobileBestGear from '@assets/shared/mobile/image-best-gear.jpg'
+import bestGearMobile from '@assets/shared/mobile/image-best-gear.jpg'
+import bestGearTablet from '@assets/shared/tablet/image-best-gear.jpg'
+import bestGearDesktop from '@assets/shared/desktop/image-best-gear.jpg'
+
 import {BlackH2, ColorText, Paragraph} from "@/styles/textStyles";
+import useWidth from "@/utils/hooks/useWidth";
 
-interface OwnProps {
-}
-
-type Props = OwnProps;
 
 const AboutWrapper = styled.section`
   padding: 0 24px 120px;
@@ -19,14 +19,32 @@ const AboutWrapper = styled.section`
   }
 
   h2 {
-    margin: 40px 0;
+    margin: 60px 100px 32px;
+  }
+
+  p {
+    text-align: center;
   }
 `
 
-const About: FunctionComponent<Props> = (props) => {
+const About: FunctionComponent = () => {
+    const width = useWidth()
+    const bestGear = width < 768 ? {
+        img: bestGearMobile,
+        width: 327,
+        height: 300
+    } : width < 1440 ? {
+        img: bestGearTablet,
+        width: 689,
+        height: 300
+    } : {
+        img: bestGearDesktop,
+        width: 1110,
+        height: 300
+    }
     return (
         <AboutWrapper>
-            <Image src={mobileBestGear} alt={"best-gear"} width={327} height={300}/>
+            <Image src={bestGear.img} alt={"best-gear"} width={bestGear.width} height={bestGear.height}/>
             <BlackH2>Bringing you the <ColorText>best</ColorText> audio gear</BlackH2>
             <Paragraph>
                 Located at the heart of New York City, Audiophile is the premier store for high end headphones,

@@ -7,7 +7,7 @@ export const Paragraph = styled.p`
   line-height: 25px;
   color: #808080;
   text-align: center;
-  
+
   @media (min-width: 768px) {
     text-align: left;
   }
@@ -72,6 +72,10 @@ export const H1 = styled.h1`
   text-transform: uppercase;
   color: #FFF;
   text-align: center;
+  @media (min-width: 768px) {
+    font-size: 56px;
+    line-height: 58px;
+  }
 `
 
 export const H2 = styled.h2`
@@ -81,6 +85,11 @@ export const H2 = styled.h2`
   letter-spacing: 1px;
   text-transform: uppercase;
   text-align: center;
+  @media (min-width: 768px) {
+    font-size: 40px;
+    line-height: 44px;
+    letter-spacing: 1.43px;
+  }
 `
 
 export const WhiteH2 = styled(H2)`
@@ -96,6 +105,10 @@ export const H3 = styled.h3`
   line-height: 28px;
   letter-spacing: 0.86px;
   text-transform: uppercase;
+  @media (min-width: 768px) {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
 `
 
 export const H4 = styled.h4`

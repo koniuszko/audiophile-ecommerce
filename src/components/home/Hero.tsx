@@ -4,10 +4,6 @@ import {H1, LightParagraph} from "@/styles/textStyles";
 import SeeProductButton from "@/components/shared/SeeProductButton";
 import NewProduct from "@/components/shared/NewProduct";
 
-interface OwnProps {
-}
-
-type Props = OwnProps;
 
 const HeroWrapper = styled.section`
   height: 510px;
@@ -23,8 +19,19 @@ const HeroWrapper = styled.section`
   justify-content: center;
   gap: 24px;
   text-align: center;
+
+  @media (min-width: 768px) {
+    height: 639px;
+    background-size: 200%;
+    background-position: 85% 75%;
+    padding: 0 195px;
+
+    p {
+      text-align: center;
+    }
+  }
 `
-const Hero: FunctionComponent<Props> = (props) => {
+const Hero: FunctionComponent = () => {
     return (
         <HeroWrapper>
             <NewProduct color={"gray"}/>

@@ -4,12 +4,8 @@ import {H6} from "@/styles/textStyles";
 import ShopLink from "@/components/shared/ShopLink";
 import {CategoryCardWrapper} from "@/styles/components";
 import styled from "styled-components";
+import {CategoriesNavProps} from "@/interfaces/interfaces";
 
-interface OwnProps {
-    categories: string[]
-}
-
-type Props = OwnProps;
 
 const CategoryCard = ({category}: { category: string }) => {
     return (
@@ -29,8 +25,16 @@ const NavWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 68px;
+
+  @media (min-width: 768px) {
+    margin: 128px auto 96px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
 `
 
+type Props = CategoriesNavProps;
 const CategoriesNav: FunctionComponent<Props> = ({categories}) => {
     return (
         <NavWrapper>

@@ -182,3 +182,7 @@ export interface ShoppingCartProps {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
 }
+
+export interface CategoriesNavProps {
+    categories: string[],
+}
