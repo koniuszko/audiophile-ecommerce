@@ -17,6 +17,15 @@ const MenuWrapper = styled.div`
     gap: 24px;
   }
 
+  @media (min-width: 768px) {
+    margin: 32px 0;
+
+    .nav {
+      flex-direction: row;
+      gap: 34px;
+    }
+
+  }
 `;
 
 const Nav: FunctionComponent<Props> = (props) => {

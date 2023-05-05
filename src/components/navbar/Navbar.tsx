@@ -11,12 +11,8 @@ import shoppingCartProductsIcon from '@assets/icons/icon-cart-products.svg'
 import MobileMenuModal from "@/components/navbar/MobileMenuModal";
 import ShoppingCart from "@/components/navbar/ShoppingCart";
 import {useSelector} from "react-redux";
+import {selectCartItems} from "@/features/cart/cartSlice";
 
-
-interface OwnProps {
-}
-
-type Props = OwnProps;
 
 const NavbarWrapper = styled.nav`
   background-color: #191919;
@@ -27,6 +23,7 @@ const NavbarWrapper = styled.nav`
   padding: 32px 24px;
   position: relative;
   z-index: 9999;
+  border-bottom: 1px solid #282828;
 
   .menu {
     margin-right: 32px;
@@ -36,15 +33,26 @@ const NavbarWrapper = styled.nav`
     display: flex;
     gap: 12px
   }
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+
+    .menu {
+      margin-right: 42px;
+    }
+
+    .account {
+      margin-left: auto;
+    }
+  }
 `
 
 
-const Navbar: FunctionComponent<Props> = (props) => {
+const Navbar: FunctionComponent = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
-    const cartItems = useSelector((state: any) => state.cart.items);
-
+    const cartItems = useSelector(selectCartItems);
 
     useEffect(() => {
         if (isMenuOpen || isCartOpen) {

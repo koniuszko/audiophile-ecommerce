@@ -30,7 +30,7 @@ const ShopLink: FunctionComponent<Props> = ({path, className}) => {
 
         <LinkWrapper className={className}>
             <Link href={path}>
-                Shop
+                SHOP
                 <Image src={arrowIcon} alt={"arrow-icon"} width={8} height={12}/>
             </Link>
         </LinkWrapper>

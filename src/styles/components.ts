@@ -21,6 +21,11 @@ export const CategoryCardWrapper = styled.div`
   .category-link {
     transform: translateY(-52px);
   }
+
+  @media (min-width: 768px) {
+    height: 165px;
+    width: 30%;
+  }
 `
 
 

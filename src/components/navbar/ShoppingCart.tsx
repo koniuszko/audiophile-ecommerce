@@ -4,19 +4,12 @@ import {BlackParagraph, H6, Paragraph, PriceText} from "@/styles/textStyles";
 import Link from "next/link";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {clearCart, decreaseItemAmount, increaseItemAmount} from "@/features/cart/cartSlice";
-import {cartItem, cartState} from "@/interfaces/interfaces";
+import {clearCart, decreaseItemAmount, increaseItemAmount, selectCartItems} from "@/features/cart/cartSlice";
+import {cartItem, ShoppingCartProps} from "@/interfaces/interfaces";
 import {GrayButtonWrapper} from "@/styles/components";
 import Image from "next/image";
 import {totalSummary} from "@/utils/helpers";
 
-
-interface CartProps {
-    isOpen: boolean;
-    setIsOpen: (isOpen: boolean) => void;
-}
-
-type Props = CartProps;
 
 const CartContentWrapper = styled.div`
   width: 327px;
@@ -52,6 +45,12 @@ const CartContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 24px;
+  }
+
+  @media (min-width: 768px) {
+    left: initial;
+    right: 50px;
+    transform: initial;
   }
 `
 
@@ -139,10 +138,12 @@ const CartItem = (item: cartItem) => {
     )
 }
 
+type Props = ShoppingCartProps;
+
 const ShoppingCart: FunctionComponent<Props> = ({isOpen, setIsOpen}) => {
     const dispatch = useDispatch();
 
-    const cartItems = useSelector((state: { cart: cartState }) => state.cart.items);
+    const cartItems = useSelector(selectCartItems);
 
     const removeAllItems = () => {
         dispatch(clearCart());

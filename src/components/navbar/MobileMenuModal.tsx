@@ -1,18 +1,12 @@
 import React, {FunctionComponent} from 'react';
 import styled from "styled-components";
-
 import Image from "next/image";
 import {H6} from "@/styles/textStyles";
-import {CategoryCardProps} from "@/interfaces/interfaces";
+import {CategoryCardProps, MobileMenuModalProps} from "@/interfaces/interfaces";
 import ShopLink from "@/components/shared/ShopLink";
 import {CategoryCardWrapper} from "@/styles/components";
 import {GetStaticProps} from "next";
 
-interface OwnProps {
-    isOpen: boolean
-}
-
-type Props = OwnProps;
 
 const categories = [
     {
@@ -38,9 +32,11 @@ const MobileMenuWrapper = styled.div<{ isOpen: boolean }>`
   left: 0;
   right: 0;
   min-height: calc(100% - 90px);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: ${({isOpen}) => (isOpen ? "flex" : "none")};
   align-items: flex-start;
+  z-index: 9999;
+
 `;
 
 const MobileMenuContent = styled.div`
@@ -55,6 +51,13 @@ const MobileMenuContent = styled.div`
   flex-direction: column;
   gap: 68px;
   z-index: 9999;
+  @media (min-width: 768px) {
+    height: 340px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 108px 40px 60px;
+    gap: 10px;
+  }
 `;
 
 
@@ -68,8 +71,9 @@ const CategoryCard = ({name, img, path}: CategoryCardProps) => {
     )
 }
 
-const MobileMenuModal: FunctionComponent<Props> = ({isOpen}) => {
 
+type Props = MobileMenuModalProps;
+const MobileMenuModal: FunctionComponent<Props> = ({isOpen}) => {
     return (
         <MobileMenuWrapper isOpen={isOpen}>
             <MobileMenuContent>
@@ -88,14 +92,3 @@ const MobileMenuModal: FunctionComponent<Props> = ({isOpen}) => {
 };
 
 export default MobileMenuModal;
-
-
-export const getStaticProps: GetStaticProps = async (context) => {
-    const res = await import("@/data/data.json");
-    const categories = await res.categories
-    return {
-        props: {
-            categories
-        }
-    }
-}

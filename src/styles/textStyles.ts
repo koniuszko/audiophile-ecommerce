@@ -7,6 +7,10 @@ export const Paragraph = styled.p`
   line-height: 25px;
   color: #808080;
   text-align: center;
+  
+  @media (min-width: 768px) {
+    text-align: left;
+  }
 `
 
 export const WhiteParagraph = styled(Paragraph)`

@@ -173,3 +173,12 @@ export interface UserOrdersPreviewProps {
 export interface OrderPreviewProps {
     order: IOrder,
 }
+
+export interface MobileMenuModalProps {
+    isOpen: boolean,
+}
+
+export interface ShoppingCartProps {
+    isOpen: boolean;
+    setIsOpen: (isOpen: boolean) => void;
+}

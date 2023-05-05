@@ -26,12 +26,34 @@ const FooterWrapper = styled.footer`
   .copyrights {
     margin-top: 48px;
   }
+
+  @media (min-width: 768px) {
+    padding: 0 40px 0;
+    align-items: flex-start;
+
+    .container {
+      margin: 80px 0 40px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .copyrights {
+      margin: 0;
+    }
+  }
 `;
 
 const SocialsWrapper = styled.div`
-  margin: 36px;
+  margin: 48px 36px 36px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 16px;
+
+  @media (min-width: 768px) {
+    margin: 0;
+  }
 `
 const Footer: FunctionComponent = () => {
     return <FooterWrapper>
@@ -43,14 +65,16 @@ const Footer: FunctionComponent = () => {
             sound specialists who are devoted to helping you get the most out of personal audio. Come and visit our demo
             facility - we’re open 7 days a week.
         </Paragraph>
-        <ParagraphBold className='copyrights'>
-            Copyright 2021. All Rights Reserved
-        </ParagraphBold>
-        <SocialsWrapper>
-            <Image src={facebookIcon} alt={"facebook-icon"} width={24} height={24}/>
-            <Image src={twitterIcon} alt={"twitter-icon"} width={24} height={24}/>
-            <Image src={instagramIcon} alt={"instagram-icon"} width={24} height={24}/>
-        </SocialsWrapper>
+        <div className="container">
+            <ParagraphBold className='copyrights'>
+                Copyright 2021. All Rights Reserved
+            </ParagraphBold>
+            <SocialsWrapper>
+                <Image src={facebookIcon} alt={"facebook-icon"} width={24} height={24}/>
+                <Image src={twitterIcon} alt={"twitter-icon"} width={24} height={24}/>
+                <Image src={instagramIcon} alt={"instagram-icon"} width={24} height={24}/>
+            </SocialsWrapper>
+        </div>
     </FooterWrapper>;
 };
 
