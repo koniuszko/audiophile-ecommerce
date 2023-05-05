@@ -19,6 +19,14 @@ export default function Home({categories, order}: { categories: string[], order:
         }
     }, []);
 
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [isModalOpen])
+
 
     return (
         <MainLayout>
@@ -26,7 +34,7 @@ export default function Home({categories, order}: { categories: string[], order:
             <CategoriesNav categories={categories}/>
             <MainSection/>
             <About/>
-            <OrderCompleted order={order} isOpen={isModalOpen} setIsOpen={setIsModalOpen}/>
+            {order && <OrderCompleted order={order} isOpen={isModalOpen} setIsOpen={setIsModalOpen}/>}
         </MainLayout>
     )
 }
@@ -53,7 +61,7 @@ export const getServerSideProps = async (context: any) => {
     return {
         props: {
             categories,
-            order: order ? order : []
+            order: order ? order : null
         }
     }
 }
