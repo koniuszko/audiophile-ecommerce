@@ -1,16 +1,11 @@
 import React, {FunctionComponent} from 'react';
-import {IProduct} from "@/interfaces/interfaces";
+import {IProduct, ProductsListProps} from "@/interfaces/interfaces";
 import styled from "styled-components";
 import Image from "next/image";
 import NewProduct from "@/components/shared/NewProduct";
 import {BlackH2, Paragraph} from "@/styles/textStyles";
 import SeeProductButton from "@/components/shared/SeeProductButton";
 
-interface OwnProps {
-    products: IProduct[]
-}
-
-type Props = OwnProps;
 
 const CardWrapper = styled.div`
   display: flex;
@@ -31,10 +26,7 @@ const ProductsWrapper = styled.div`
   gap: 120px;
 
 `
-
-
 const ProductCard = ({product}: { product: IProduct }) => {
-
     return (
         <CardWrapper>
             <Image src={`/assets/${product.productName}/mobile/image-category-page-preview.jpg`}
@@ -51,8 +43,8 @@ const ProductCard = ({product}: { product: IProduct }) => {
     )
 }
 
+type Props = ProductsListProps;
 const ProductsList: FunctionComponent<Props> = ({products}) => {
-    console.log(products)
     return (
         <ProductsWrapper>
             {products.map((product, index) => (

@@ -18,23 +18,6 @@ const EmptyCart = styled(H3)`
 `
 export default function Checkout() {
     const cartItems = useSelector(selectCartItems)
-
-    // const router = useRouter();
-    //
-    // const {data: session} = useSession();
-    //
-    // useEffect(() => {
-    //     return () => {
-    //         getSession().then((session) => {
-    //             if (session) {
-    //                 router.replace(`/login/${session.user.id}`)
-    //             } else {
-    //                 setIsLoading(false)
-    //             }
-    //         })
-    //     };
-    // }, [router]);
-
     return (
         <MainLayout>
             <SectionWrapper>

@@ -123,13 +123,15 @@ export interface cartState {
 }
 
 export interface UserDataProps {
-    data: {
+    user: {
         _id: string,
         name: string,
         email: string,
+        address: IAddress,
         role: string,
         orders: []
-    }
+    },
+    orders: IOrder[],
 }
 
 
@@ -158,4 +160,16 @@ export interface StripeCheckoutProps {
         },
         unit_amount: number,
     }
+}
+
+export interface ProductsListProps {
+    products: IProduct[],
+}
+
+export interface UserOrdersPreviewProps {
+    orders: IOrder[],
+}
+
+export interface OrderPreviewProps {
+    order: IOrder,
 }

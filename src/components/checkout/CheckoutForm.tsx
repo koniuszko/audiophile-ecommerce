@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useEffect} from 'react';
 import styled from "styled-components";
 import {Formik, Form, ErrorMessage} from 'formik'
 import axios from "axios";
@@ -12,6 +12,7 @@ import {selectCartItems} from "@/features/cart/cartSlice";
 import Image from "next/image";
 import PaymentRadio from "@/components/checkout/PaymentRadio";
 import {CheckoutFormValidator} from "@/utils/validators";
+import {getSession, useSession} from "next-auth/react";
 
 
 interface OwnProps {
@@ -134,14 +135,25 @@ const CartItem = (item: cartItem) => {
 
 const CheckoutForm: FunctionComponent<Props> = () => {
     const [radioValue, setRadioValue] = useState('credit-card');
+    const [userId, setUserId] = useState("unregistered");
 
     const cartItems = useSelector(selectCartItems);
+    const {data: session} = useSession();
 
     const shippingFee = cartItems.length > 0 ? 50 : 0;
 
-    const checkoutHandler = async (address: IAddress, paymentMethod: string, products: cartItem[]) => {
+    useEffect(() => {
+        getSession().then(session => {
+            if (session) {
+                setUserId(session.user.id);
+            }
+        })
+    }, [])
+
+
+    const checkoutHandler = async (address: IAddress, paymentMethod: string, products: cartItem[], userId: string) => {
         await sleep(500);
-        axios.post("/api/checkout", {address, paymentMethod, products})
+        axios.post("/api/checkout", {address, paymentMethod, products, userId})
             .then(res => {
                 if (res.status === 200) {
                     window.location.href = res.data.url;
@@ -163,7 +175,7 @@ const CheckoutForm: FunctionComponent<Props> = () => {
                     country: '',
                 }}
                 validationSchema={CheckoutFormValidator}
-                onSubmit={(values) => checkoutHandler(values, radioValue, cartItems)}
+                onSubmit={(values) => checkoutHandler(values, radioValue, cartItems, userId)}
             >
                 <Form className="form">
                     <div className="checkout">

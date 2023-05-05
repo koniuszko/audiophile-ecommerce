@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
     }
 
-    const {address, products, paymentMethod} = req.body;
+    const {address, products, paymentMethod, userId} = req.body;
 
     console.log(address, products, paymentMethod);
 
@@ -34,6 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
 
     const order = await Order.create({
+        userId,
         address,
         orderDate: new Date().toISOString(),
         items: products,

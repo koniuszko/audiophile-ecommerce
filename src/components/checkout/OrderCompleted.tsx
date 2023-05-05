@@ -104,7 +104,6 @@ const CartItem = (item: cartItem) => {
 const OrderCompleted: FunctionComponent<Props> = ({order, isOpen, setIsOpen}) => {
     const [orderItems] = order;
     const items = orderItems?.items
-    console.log(order)
     return (
         <OrderCompletionWrapper isOpen={isOpen}>
             <OrderCompletionContent>
