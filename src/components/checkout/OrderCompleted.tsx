@@ -57,7 +57,7 @@ export const OrderCompletionWrapper = styled.div<IModalProps>`
 
 export const OrderCompletionContent = styled.div`
   width: 90%;
-  height: 80vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -112,7 +112,7 @@ const OrderCompleted: FunctionComponent<Props> = ({order, isOpen, setIsOpen}) =>
                 <Image className='check-icon' src={checkIcon} alt={'check-icon'} width={64} height={64}/>
                 <H3>Thank you for your order</H3>
                 <Paragraph>
-                    You will recieve an email confirmation shortly.
+                    You will receive an email confirmation shortly.
                 </Paragraph>
                 <SummaryWrapper>
                     <div className="summary-items">

@@ -1,16 +1,10 @@
 import MainLayout from "@/layouts/MainLayout";
-import LoginSwitch from "@/components/login/LoginSwitch";
-import {useEffect, useState} from "react";
 import styled from "styled-components";
-import RegisterForm from "@/components/login/RegisterForm";
-import LoginForm from "@/components/login/LoginForm";
-import {useRouter} from "next/router";
-import {getSession, useSession} from "next-auth/react";
 import GoBackButton from "@/components/shared/GoBackButton";
 import CheckoutForm from "@/components/checkout/CheckoutForm";
 import {useSelector} from "react-redux";
 import {selectCartItems} from "@/features/cart/cartSlice";
-import {H1, H3} from "@/styles/textStyles";
+import {H3} from "@/styles/textStyles";
 
 const SectionWrapper = styled.section`
   background-color: #fafafa;

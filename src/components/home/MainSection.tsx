@@ -7,7 +7,6 @@ import zx9Speaker from "@assets/home/mobile/image-speaker-zx9.png"
 import zx7Speaker from "@assets/home/mobile/image-speaker-zx7.jpg"
 import yx1Earphones from "@assets/home/mobile/image-earphones-yx1.jpg"
 
-import circles from "@assets/home/pattern-circles.svg"
 import SeeProductButton from "@/components/shared/SeeProductButton";
 
 

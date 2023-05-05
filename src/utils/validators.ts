@@ -8,3 +8,13 @@ export const RegisterFormValidator = Yup.object({
     passwordConfirmation: Yup.string().oneOf([Yup.ref('password'), undefined], "Passwords must match"),
     acceptedTerms: Yup.boolean().required('Required').oneOf([true], 'You must accept the terms and conditions.'),
 })
+
+export const CheckoutFormValidator = Yup.object({
+    name: Yup.string().required('Required').min(3, "Must be at least 3 characters long"),
+    email: Yup.string().required('Required').matches(emailRegex, "Email is wrong!"),
+    phone: Yup.string().required('Required').min(3, "Must be at least 3 characters long"),
+    street: Yup.string().required('Required').min(3, "Must be at least 3 characters long"),
+    zip: Yup.string().required('Required').min(3, "Must be at least 3 characters long").max(30, 'Must be 30 characters or less'),
+    city: Yup.string().required('Required').min(3, "Must be at least 3 characters long"),
+    country: Yup.string().required('Required').min(3, "Must be at least 3 characters long"),
+})

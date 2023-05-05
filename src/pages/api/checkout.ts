@@ -1,14 +1,12 @@
 import {dbConnect} from "@/utils/dbConnect";
 import {NextApiRequest, NextApiResponse} from "next";
-import {IProduct} from "@/interfaces/interfaces" ;
+import {cartItem, IProduct, StripeCheckoutProps} from "@/interfaces/interfaces" ;
 import Order from "@/models/OrderModel";
 
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
-
     await dbConnect();
 
     if (req.method !== "POST") {
@@ -16,30 +14,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
     }
 
-    const {address, products} = req.body;
+    const {address, products, paymentMethod} = req.body;
 
-    console.log(address, products);
+    console.log(address, products, paymentMethod);
 
-    interface productsProps {
-        product: IProduct,
-        quantity: number,
-    }
+    let cartItems: StripeCheckoutProps[] = [];
 
-    type  cartItemsProps = {
-        quantity: number,
-        price_data: {
-            currency: string,
-            product_data: {
-                name: string,
-            },
-            unit_amount: number,
-        }
-    }
-
-
-    let cartItems: cartItemsProps[] = [];
-
-    products.forEach((item: productsProps) => {
+    products.forEach((item: cartItem) => {
         cartItems.push({
             quantity: item.quantity,
             price_data: {
@@ -52,35 +33,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
     })
 
-    console.log(cartItems);
-
-
     const order = await Order.create({
         address,
         orderDate: new Date().toISOString(),
         items: products,
-        paymentMethod: 'credit-card',
+        paymentMethod: paymentMethod,
         paid: 0
     })
 
-    const session = await stripe.checkout.sessions.create({
-        shipping_options: [{
-            shipping_rate_data: {
-                type: 'fixed_amount',
-                fixed_amount: {
-                    amount: 5000,
-                    currency: 'USD'
-                },
-                display_name: 'Standard shipping',
-            }
-        }],
-        line_items: cartItems,
-        mode: 'payment',
-        customer_email: address.email,
-        success_url: `${req.headers.origin}/?success=true&orderId=${order._id.toString()}`,
-        cancel_url: `${req.headers.origin}/?canceled=true`,
-        metadata: {orderId: order._id.toString()}
-    });
+    if (paymentMethod === "credit-card") {
 
-    res.status(200).json({url: session.url})
+        const session = await stripe.checkout.sessions.create({
+            shipping_options: [{
+                shipping_rate_data: {
+                    type: 'fixed_amount',
+                    fixed_amount: {
+                        amount: 5000,
+                        currency: 'USD'
+                    },
+                    display_name: 'Standard shipping',
+                }
+            }],
+            line_items: cartItems,
+            mode: 'payment',
+            customer_email: address.email,
+            success_url: `${req.headers.origin}/?success=true&orderId=${order._id.toString()}`,
+            cancel_url: `${req.headers.origin}/?canceled=true`,
+            metadata: {orderId: order._id.toString()}
+        });
+
+        res.status(200).json({url: session.url})
+    } else {
+        res.status(200).json({url: `/?success=true&orderId=${order._id.toString()}`})
+    }
 }

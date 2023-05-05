@@ -74,7 +74,7 @@ export interface IAddress {
     email: string,
     phone: string,
     street: string,
-    postcode: string,
+    zip: string,
     city: string,
     country: string,
 }
@@ -147,4 +147,15 @@ export interface OrderCompletedProps {
 export interface AddToCartButtonProps {
     product: IProduct,
     quantity: number,
+}
+
+export interface StripeCheckoutProps {
+    quantity: number,
+    price_data: {
+        currency: string,
+        product_data: {
+            name: string,
+        },
+        unit_amount: number,
+    }
 }

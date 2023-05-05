@@ -1,7 +1,5 @@
 import {getToken} from "next-auth/jwt";
-import {resolveTitle} from "next/dist/lib/metadata/resolvers/resolve-title";
 import {GetServerSidePropsContext, NextApiRequest} from "next";
-import {IncomingMessage} from "http";
 
 const secret = process.env.NEXTAUTH_SECRET
 

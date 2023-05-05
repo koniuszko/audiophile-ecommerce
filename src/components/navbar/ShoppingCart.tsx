@@ -1,10 +1,10 @@
 import React, {FunctionComponent} from 'react';
 import {ModalWrapper, PrimaryButton} from "@/styles/global";
-import {BlackParagraph, H3, H6, Paragraph, PriceText} from "@/styles/textStyles";
+import {BlackParagraph, H6, Paragraph, PriceText} from "@/styles/textStyles";
 import Link from "next/link";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {clearCart, decreaseItemAmount, increaseItemAmount, selectCartItems} from "@/features/cart/cartSlice";
+import {clearCart, decreaseItemAmount, increaseItemAmount} from "@/features/cart/cartSlice";
 import {cartItem, cartState} from "@/interfaces/interfaces";
 import {GrayButtonWrapper} from "@/styles/components";
 import Image from "next/image";

@@ -1,19 +1,17 @@
 import React, {FunctionComponent} from 'react';
 import styled from "styled-components";
-import {Formik, Form, Field, ErrorMessage} from 'formik'
-import * as Yup from 'yup'
+import {Formik, Form, ErrorMessage} from 'formik'
 import axios from "axios";
 import {ErrorMsg, FormLabel, InputField, PrimaryButton,} from "@/styles/global";
-import StatusModal from "@/components/login/StatusModal";
 import {useState} from "react";
 import {sleep, totalSummary, VatValue} from "@/utils/helpers";
 import {BlackH2, BlackParagraph, ColorParagraph, H6, Paragraph, Subtitle} from "@/styles/textStyles";
-import {emailRegex} from "@/utils/regex";
-import {cartItem, cartState} from "@/interfaces/interfaces";
-import {useDispatch, useSelector} from "react-redux";
-import {decreaseItemAmount, increaseItemAmount, selectCartItems} from "@/features/cart/cartSlice";
+import {cartItem, IAddress,} from "@/interfaces/interfaces";
+import {useSelector} from "react-redux";
+import {selectCartItems} from "@/features/cart/cartSlice";
 import Image from "next/image";
 import PaymentRadio from "@/components/checkout/PaymentRadio";
+import {CheckoutFormValidator} from "@/utils/validators";
 
 
 interface OwnProps {
@@ -24,14 +22,11 @@ type Props = OwnProps;
 const CheckoutWrapper = styled.section`
   margin: 24px auto;
 
-
   .form {
-
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
-
 
     &-input {
       width: 100%;
@@ -46,7 +41,6 @@ const CheckoutWrapper = styled.section`
     background-color: #fff;
     border-radius: 8px;
     padding: 24px;
-
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -145,16 +139,15 @@ const CheckoutForm: FunctionComponent<Props> = () => {
 
     const shippingFee = cartItems.length > 0 ? 50 : 0;
 
-    const checkoutHandler = async (address: any, payment: any, products: any) => {
+    const checkoutHandler = async (address: IAddress, paymentMethod: string, products: cartItem[]) => {
         await sleep(500);
-        axios.post("/api/checkout", {address, payment, products})
+        axios.post("/api/checkout", {address, paymentMethod, products})
             .then(res => {
                 if (res.status === 200) {
                     window.location.href = res.data.url;
                 }
             })
             .catch(err => console.log(err))
-
     }
 
     return (
@@ -164,13 +157,12 @@ const CheckoutForm: FunctionComponent<Props> = () => {
                     name: '',
                     email: '',
                     phone: '',
-                    address: '',
+                    street: '',
                     city: '',
                     zip: '',
                     country: '',
-
                 }}
-                validationSchema={null}
+                validationSchema={CheckoutFormValidator}
                 onSubmit={(values) => checkoutHandler(values, radioValue, cartItems)}
             >
                 <Form className="form">
@@ -204,10 +196,10 @@ const CheckoutForm: FunctionComponent<Props> = () => {
                             Shipping Info
                         </Subtitle>
                         <div className="form-input">
-                            <FormLabel htmlFor="address">Your address</FormLabel>
-                            <ErrorMessage name="address"
+                            <FormLabel htmlFor="street">Your address</FormLabel>
+                            <ErrorMessage name="street"
                                           render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
-                            <InputField name="address" type="address"/>
+                            <InputField name="street" type="street"/>
                         </div>
                         <div className="form-input">
                             <FormLabel htmlFor="zip">ZIP code</FormLabel>
