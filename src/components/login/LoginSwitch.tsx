@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {LoginSwitchProps} from "@/interfaces/login_interfaces";
+import {LoginSwitchProps} from "@/interfaces/interfaces";
 
 const SwitchWrapper = styled.div`
   padding-top: 24px;

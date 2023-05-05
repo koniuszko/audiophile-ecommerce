@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import {ProductProps} from "@/interfaces/products_interfaces";
+import {IProduct} from "@/interfaces/interfaces";
 import styled from "styled-components";
 import {H3, H4} from "@/styles/textStyles";
 import Image from "next/image";
@@ -7,7 +7,7 @@ import SeeProductButton from "@/components/shared/SeeProductButton";
 import {useRouter} from "next/router";
 
 interface OwnProps {
-    products: ProductProps[]
+    products: IProduct[]
 }
 
 type Props = OwnProps;
@@ -33,7 +33,7 @@ const OtherProductsWrapper = styled.div`
   gap: 56px;
 `
 
-const OtherProductCard = ({product}: { product: ProductProps }) => {
+const OtherProductCard = ({product}: { product: IProduct }) => {
     return (
         <OtherProductCardWrapper>
             <Image src={`/assets/shared/mobile/${product.productName}.jpg`}

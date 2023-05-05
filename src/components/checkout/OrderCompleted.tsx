@@ -5,17 +5,11 @@ import Image from "next/image";
 import checkIcon from "@assets/icons/icon-order-confirmation.svg";
 import {BlackParagraph, H3, Paragraph, WhiteParagraph} from "@/styles/textStyles";
 import styled from "styled-components";
-import {cartItem} from "@/interfaces/cart_interfaces";
+import {cartItem, OrderCompletedProps} from "@/interfaces/interfaces";
 import {totalSummary} from "@/utils/helpers";
-import {IModalProps} from "@/interfaces/login_interfaces";
+import {IModalProps} from "@/interfaces/interfaces";
 
-interface OwnProps {
-    isOpen: boolean;
-    setIsOpen: (isOpen: boolean) => void;
-    order: any
-}
-
-type Props = OwnProps;
+type Props = OrderCompletedProps;
 
 const CartItemWrapper = styled.div`
   display: flex;
@@ -109,8 +103,8 @@ const CartItem = (item: cartItem) => {
 
 const OrderCompleted: FunctionComponent<Props> = ({order, isOpen, setIsOpen}) => {
     const [orderItems] = order;
-    const items: any[] = orderItems?.items
-    console.log(orderItems)
+    const items = orderItems?.items
+    console.log(order)
     return (
         <OrderCompletionWrapper isOpen={isOpen}>
             <OrderCompletionContent>

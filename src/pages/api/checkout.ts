@@ -1,6 +1,6 @@
 import {dbConnect} from "@/utils/dbConnect";
 import {NextApiRequest, NextApiResponse} from "next";
-import {IProduct} from "@/interfaces/models_interfaces";
+import {IProduct} from "@/interfaces/interfaces" ;
 import Order from "@/models/OrderModel";
 
 

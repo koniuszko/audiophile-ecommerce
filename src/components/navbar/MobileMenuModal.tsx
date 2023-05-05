@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Image from "next/image";
 import {H6} from "@/styles/textStyles";
-import {CategoryCardProps} from "@/interfaces/navbar_interfaces";
+import {CategoryCardProps} from "@/interfaces/interfaces";
 import ShopLink from "@/components/shared/ShopLink";
 import {CategoryCardWrapper} from "@/styles/components";
 import {GetStaticProps} from "next";

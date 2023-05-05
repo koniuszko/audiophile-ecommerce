@@ -6,9 +6,11 @@ import MainSection from "@/components/home/MainSection";
 import axios from "axios";
 import OrderCompleted from "@/components/checkout/OrderCompleted";
 import {useEffect, useState} from "react";
+import {HomePageProps, IOrder, IProduct} from "@/interfaces/interfaces";
+import {GetServerSidePropsContext} from "next";
 
 
-export default function Home({categories, order}: { categories: string[], order: any }) {
+export default function Home({categories, order}: HomePageProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     // console.log(order)
     useEffect(() => {
@@ -39,25 +41,24 @@ export default function Home({categories, order}: { categories: string[], order:
     )
 }
 
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     const res = await axios.get("http://localhost:3000/api/products")
         .then((res) => {
             return res.data
         }).catch((err) => {
             console.log(err)
         })
-    const categories = [...new Set<string>(res.map((product: any) => product.category))]
-    let order: any;
-    if (context.req.url.includes("orderId")) {
+    const categories = [...new Set<string>(res.map((product: IProduct) => product.category))]
+
+    let order: IOrder[] | null = null;
+    if (context.req.url?.includes("orderId")) {
         order = await axios.get(`http://localhost:3000/api/orders/${context.query.orderId}`)
             .then((res) => {
-                // console.log(res.data)
                 return res.data
             }).catch((err) => {
                 console.log(err)
             })
     }
-
     return {
         props: {
             categories,

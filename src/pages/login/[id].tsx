@@ -5,7 +5,7 @@ import {dbConnect} from "@/utils/dbConnect";
 import User from "@/models/UserModel";
 import {GetServerSideProps} from "next";
 import {signOut} from "next-auth/react";
-import {UserDataProps} from "@/interfaces/account_interfaces";
+import {UserDataProps} from "@/interfaces/interfaces";
 
 const AccountSection = styled.section`
 

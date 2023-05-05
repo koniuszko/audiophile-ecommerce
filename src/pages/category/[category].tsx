@@ -5,7 +5,7 @@ import {GetStaticPaths, GetStaticProps} from "next";
 import ProductsList from "@/components/category/ProductsList";
 import axios from "axios";
 import CategoryHeader from "@/components/category/CategoryHeader";
-import {CategoryPageProps} from "@/interfaces/products_interfaces";
+import {CategoryPageProps} from "@/interfaces/interfaces";
 
 export default function Category({products, categories, currentCategory}: CategoryPageProps) {
     console.log(currentCategory)

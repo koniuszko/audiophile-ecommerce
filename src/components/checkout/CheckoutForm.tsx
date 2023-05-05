@@ -9,7 +9,7 @@ import {useState} from "react";
 import {sleep, totalSummary, VatValue} from "@/utils/helpers";
 import {BlackH2, BlackParagraph, ColorParagraph, H6, Paragraph, Subtitle} from "@/styles/textStyles";
 import {emailRegex} from "@/utils/regex";
-import {cartItem, cartState} from "@/interfaces/cart_interfaces";
+import {cartItem, cartState} from "@/interfaces/interfaces";
 import {useDispatch, useSelector} from "react-redux";
 import {decreaseItemAmount, increaseItemAmount, selectCartItems} from "@/features/cart/cartSlice";
 import Image from "next/image";

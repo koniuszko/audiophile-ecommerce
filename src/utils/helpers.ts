@@ -1,4 +1,4 @@
-import {cartItem} from "@/interfaces/cart_interfaces";
+import {cartItem} from "@/interfaces/interfaces";
 
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 

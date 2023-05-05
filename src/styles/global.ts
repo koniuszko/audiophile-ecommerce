@@ -1,6 +1,6 @@
 import styled, {createGlobalStyle} from "styled-components";
 import {Field} from "formik";
-import {IModalProps} from "@/interfaces/login_interfaces";
+import {IModalProps} from "@/interfaces/interfaces";
 import Link from "next/link";
 
 
@@ -92,9 +92,15 @@ export const PrimaryButton = styled(Button)`
   background-color: #D87D4A;
   border: none;
   color: #FFF;
+  cursor: pointer;
 
   &:hover {
     background-color: #FBAF85;
+  }
+
+  &:disabled {
+    background-color: #CFCFCF;
+    cursor: not-allowed;
   }
 `
 
@@ -190,4 +196,39 @@ export const StyledHeader = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`
+
+export const CategoryCardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  height: 165px;
+  position: relative;
+
+  .category-image {
+    transform: translateY(-40%);
+  }
+
+  .category-name {
+    transform: translateY(-52px);
+  }
+
+  .category-link {
+    transform: translateY(-52px);
+  }
+`
+
+
+export const GrayButtonWrapper = styled.button`
+  font-size: 15px;
+  font-weight: 500;
+  color: #808080;
+  width: 80px;
+
+  &:hover {
+    color: #d87d4a;
+  }
 `

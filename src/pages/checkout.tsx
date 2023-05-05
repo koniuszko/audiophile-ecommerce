@@ -8,14 +8,22 @@ import {useRouter} from "next/router";
 import {getSession, useSession} from "next-auth/react";
 import GoBackButton from "@/components/shared/GoBackButton";
 import CheckoutForm from "@/components/checkout/CheckoutForm";
+import {useSelector} from "react-redux";
+import {selectCartItems} from "@/features/cart/cartSlice";
+import {H1, H3} from "@/styles/textStyles";
 
 const SectionWrapper = styled.section`
   background-color: #fafafa;
   padding: 16px 24px 96px;
 `
-export default function Login() {
-    const [register, setRegister] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+
+const EmptyCart = styled(H3)`
+  margin: 60px auto;
+  text-align: center;
+  color: #000;
+`
+export default function Checkout() {
+    const cartItems = useSelector(selectCartItems)
 
     // const router = useRouter();
     //
@@ -37,7 +45,7 @@ export default function Login() {
         <MainLayout>
             <SectionWrapper>
                 <GoBackButton/>
-                <CheckoutForm/>
+                {cartItems.length > 0 ? <CheckoutForm/> : <EmptyCart>Cart is empty</EmptyCart>}
             </SectionWrapper>
         </MainLayout>
     )

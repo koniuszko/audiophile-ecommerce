@@ -3,7 +3,7 @@ import {signIn, SignInResponse, useSession} from "next-auth/react";
 import {Formik, Form, Field} from 'formik'
 import * as Yup from 'yup'
 import React, {useState} from "react";
-import {LoginUserProps} from "@/interfaces/login_interfaces";
+import {LoginUserProps} from "@/interfaces/interfaces";
 import {ErrorMsg, FormLabel, InputField, PrimaryButton} from "@/styles/global";
 import {router} from "next/client";
 

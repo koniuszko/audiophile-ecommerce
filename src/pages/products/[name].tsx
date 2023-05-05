@@ -1,13 +1,13 @@
 import MainLayout from "@/layouts/MainLayout";
 import CategoriesNav from "@/components/navbar/CategoriesNav";
 import About from "@/components/shared/About";
-import {GetStaticPaths, GetStaticProps} from "next";
+import {GetStaticPaths, GetStaticProps, GetStaticPropsContext} from "next";
 import axios from "axios";
-import {ProductPageProps} from "@/interfaces/products_interfaces";
+import {IProduct, ProductPageProps} from "@/interfaces/interfaces";
 import Image from "next/image";
 import styled from "styled-components";
 import NewProduct from "@/components/shared/NewProduct";
-import {BlackH2, ColorText, H3, Paragraph, ParagraphBold, PriceText} from "@/styles/textStyles";
+import {BlackH2, ColorText, H3, Paragraph, PriceText} from "@/styles/textStyles";
 import AddToCartButton from "@/components/product/AddToCartButton";
 import QuantityControl from "@/components/product/QuantityControl";
 import {useEffect, useState} from "react";
@@ -58,37 +58,36 @@ const DynamicOthers = dynamic(() => import("@/components/product/OtherProducts")
 
 export default function Product({categories, product, products}: ProductPageProps) {
     const [quantity, setQuantity] = useState(1)
-    const [item] = product
 
     useEffect(() => {
         setQuantity(1)
-    }, [item])
+    }, [product])
 
     return (
         <MainLayout>
             <ProductSection>
                 <GoBackButton/>
-                <Image src={`/assets/${item.productName}/mobile/image-product.jpg`}
-                       alt={`${item.productName} image`}
+                <Image src={`/assets/${product.productName}/mobile/image-product.jpg`}
+                       alt={`${product.productName} image`}
                        width={327} height={327}/>
-                {item.isNewProduct && <NewProduct/>}
+                {product.isNewProduct && <NewProduct/>}
                 <BlackH2>
-                    {item.productTitle}
+                    {product.productTitle}
                 </BlackH2>
                 <Paragraph>
-                    {item.description}
+                    {product.description}
                 </Paragraph>
                 <PriceText>
-                    $ {item.price}
+                    $ {product.price}
                 </PriceText>
                 <ButtonsWrapper>
                     <QuantityControl quantity={quantity} setQuantity={setQuantity}/>
-                    <AddToCartButton product={item} quantity={quantity}/>
+                    <AddToCartButton product={product} quantity={quantity}/>
                 </ButtonsWrapper>
                 <H3>
                     Features
                 </H3>
-                {item.features.map((feature, index) => (
+                {product.features.map((feature, index) => (
                     <Paragraph key={index}>
                         {feature}
                     </Paragraph>
@@ -97,7 +96,7 @@ export default function Product({categories, product, products}: ProductPageProp
                     In the box
                 </H3>
                 <ul className="product-includes">
-                    {item.inTheBox.map((include, index) => (
+                    {product.inTheBox.map((include, index) => (
                         <li key={index}>
                             <Paragraph>
                                 <ColorText className='include-quantity'>{include.quantity}x </ColorText>{include.item}
@@ -106,14 +105,14 @@ export default function Product({categories, product, products}: ProductPageProp
                     ))}
                 </ul>
                 <div className="product-gallery">
-                    <Image src={`/assets/${item.productName}/mobile/image-gallery-1.jpg`}
-                           alt={`${item.productName} image`}
+                    <Image src={`/assets/${product.productName}/mobile/image-gallery-1.jpg`}
+                           alt={`${product.productName} image`}
                            width={327} height={174}/>
-                    <Image src={`/assets/${item.productName}/mobile/image-gallery-2.jpg`}
-                           alt={`${item.productName} image`}
+                    <Image src={`/assets/${product.productName}/mobile/image-gallery-2.jpg`}
+                           alt={`${product.productName} image`}
                            width={327} height={174}/>
-                    <Image src={`/assets/${item.productName}/mobile/image-gallery-3.jpg`}
-                           alt={`${item.productName} image`}
+                    <Image src={`/assets/${product.productName}/mobile/image-gallery-3.jpg`}
+                           alt={`${product.productName} image`}
                            width={327} height={368}/>
                 </div>
             </ProductSection>
@@ -125,16 +124,16 @@ export default function Product({categories, product, products}: ProductPageProp
 }
 
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
     const res = await axios.get(`http://localhost:3000/api/products`)
         .then((res) => {
             return res.data
         }).catch((err) => {
             console.log(err)
         })
-    const categories = [...new Set<string>(res.map((product: any) => product.category))]
+    const categories = [...new Set<string>(res.map((product: IProduct) => product.category))]
     const products = res
-    const product = res.filter((product: any) => product.productName === context.params?.name)
+    const product = res.find((product: IProduct) => product.productName === context.params?.name)
     console.log(products)
     return {
         props: {
@@ -144,16 +143,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
         }
     }
 }
-export const getStaticPaths: GetStaticPaths = async (context) => {
+export const getStaticPaths: GetStaticPaths = async () => {
     const res = await axios.get("http://localhost:3000/api/products")
         .then((res) => {
             return res.data
         }).catch((err) => {
             console.log(err)
         })
-    const productsNames = [...new Set<string>(res.map((product: any) => product.productName))]
+    const productsNames = [...new Set<string>(res.map((product: IProduct) => product.productName))]
     const paths = productsNames.map(
-        (name: any) => {
+        (name: string) => {
             return {
                 params: {name}
             }

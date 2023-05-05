@@ -5,7 +5,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {clearCart, decreaseItemAmount, increaseItemAmount, selectCartItems} from "@/features/cart/cartSlice";
-import {cartItem, cartState} from "@/interfaces/cart_interfaces";
+import {cartItem, cartState} from "@/interfaces/interfaces";
 import {GrayButtonWrapper} from "@/styles/components";
 import Image from "next/image";
 import {totalSummary} from "@/utils/helpers";
@@ -22,7 +22,6 @@ const CartContentWrapper = styled.div`
   width: 327px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 24px;
   position: absolute;
@@ -32,6 +31,8 @@ const CartContentWrapper = styled.div`
   background-color: #FFF;
   padding: 32px 28px;
   border-radius: 8px;
+  overflow-y: auto;
+  max-height: 80vh;
 
   .cart-header {
     width: 100%;
@@ -174,7 +175,7 @@ const ShoppingCart: FunctionComponent<Props> = ({isOpen, setIsOpen}) => {
                         </PriceText>
                     </div>
                     <Link href={'/checkout'}>
-                        <PrimaryButton>
+                        <PrimaryButton disabled={cartItems.length < 1}>
                             checkout
                         </PrimaryButton>
                     </Link>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from "next/link";
 import {ModalContent, ModalWrapper, PrimaryButton} from "@/styles/global";
-import {IRegistrationModalProps} from "@/interfaces/login_interfaces";
+import {IRegistrationModalProps} from "@/interfaces/interfaces";
 import {H3, Paragraph} from "@/styles/textStyles";
 import checkIcon from '@assets/icons/icon-order-confirmation.svg'
 import Image from "next/image";

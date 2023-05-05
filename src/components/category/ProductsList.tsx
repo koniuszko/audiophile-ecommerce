@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import {ProductProps} from "@/interfaces/products_interfaces";
+import {IProduct} from "@/interfaces/interfaces";
 import styled from "styled-components";
 import Image from "next/image";
 import NewProduct from "@/components/shared/NewProduct";
@@ -7,7 +7,7 @@ import {BlackH2, Paragraph} from "@/styles/textStyles";
 import SeeProductButton from "@/components/shared/SeeProductButton";
 
 interface OwnProps {
-    products: ProductProps[]
+    products: IProduct[]
 }
 
 type Props = OwnProps;
@@ -33,7 +33,7 @@ const ProductsWrapper = styled.div`
 `
 
 
-const ProductCard = ({product}: { product: ProductProps }) => {
+const ProductCard = ({product}: { product: IProduct }) => {
 
     return (
         <CardWrapper>
