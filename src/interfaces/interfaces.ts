@@ -170,3 +170,11 @@ export interface CategoriesNavProps {
 export interface CategoryHeaderProps {
     currentCategory: string,
 }
+
+export interface NavProps {
+    desktopMode: boolean,
+}
+
+export interface ColorProps {
+    color: string,
+}

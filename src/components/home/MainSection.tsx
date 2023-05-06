@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import styled from "styled-components";
-import {BlackH2, H1, H3, WhiteH2, WhiteParagraph} from "@/styles/textStyles";
+import {H1, H3, WhiteParagraph} from "@/styles/textStyles";
 import Image from "next/image";
 
 import zx9SpeakerMobile from "@assets/home/mobile/image-speaker-zx9.png"
@@ -42,6 +42,13 @@ const MainWrapper = styled.section`
 
     }
   }
+
+  @media (min-width: 1440px) {
+    margin: 0 auto;
+    padding: 0;
+    width: 1100px;
+    gap: 48px;
+  }
 `
 
 const MainContainer = styled.div`
@@ -68,6 +75,43 @@ const MainContainer = styled.div`
       text-align: center;
     }
   }
+
+  @media (min-width: 1440px) {
+    height: 560px;
+    background-size: 80% ;
+    background-position: -120px 10%;
+    position: relative;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 96px;
+      left: 115px;
+    }
+
+    h1 {
+      position: absolute;
+      width: 250px;
+      top: 130px;
+      left: 665px;
+      text-align: left;
+    }
+
+    p {
+      position: absolute;
+      width: 250px;
+      top: 260px;
+      left: 665px;
+      text-align: left;
+    }
+
+    button {
+      position: absolute;
+      top: 390px;
+      left: 665px;
+
+    }
+  }
 `
 
 const SecondaryContainer = styled.div`
@@ -88,8 +132,10 @@ const SecondaryContainer = styled.div`
     top: 170px;
   }
 
-  @media (min-width: 768px) {
-
+  @media (min-width: 1440px) {
+    h3, button {
+      left: 100px;
+    }
   }
 `
 const TertiaryContainer = styled.div`
@@ -125,7 +171,14 @@ const TertiaryContainer = styled.div`
       left: 40px;
       top: 170px;
     }
+  }
 
+  @media (min-width: 1440px) {
+    width: 540px;
+
+    h3, button {
+      left: 100px;
+    }
   }
 `
 const MainSection: FunctionComponent = () => {
@@ -142,8 +195,8 @@ const MainSection: FunctionComponent = () => {
         height: 237
     } : {
         img: zx9SpeakerDesktop,
-        width: 100,
-        height: 100
+        width: 410,
+        height: 493
     };
 
     const zx7Speaker = width < 768 ? {
@@ -156,7 +209,7 @@ const MainSection: FunctionComponent = () => {
         height: 320
     } : {
         img: zx7SpeakerDesktop,
-        width: 327,
+        width: 1110,
         height: 320
     }
 
@@ -170,8 +223,8 @@ const MainSection: FunctionComponent = () => {
         height: 320
     } : {
         img: yx1EarphonesDesktop,
-        width: 327,
-        height: 200
+        width: 540,
+        height: 320
     }
 
     return (

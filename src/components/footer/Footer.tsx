@@ -42,6 +42,16 @@ const FooterWrapper = styled.footer`
       margin: 0;
     }
   }
+
+  @media (min-width: 1440px) {
+    width: 1100px;
+    margin: 0 auto;
+    padding: 0;
+
+    p {
+      width: 50%;
+    }
+  }
 `;
 
 const SocialsWrapper = styled.div`

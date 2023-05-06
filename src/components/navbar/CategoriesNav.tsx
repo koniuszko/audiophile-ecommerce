@@ -32,6 +32,12 @@ const NavWrapper = styled.div`
     justify-content: center;
     gap: 10px;
   }
+  @media (min-width: 1440px) {
+    width: 1110px;
+    padding: 0;
+    gap: initial;
+    justify-content: space-between;
+  }
 `
 
 type Props = CategoriesNavProps;

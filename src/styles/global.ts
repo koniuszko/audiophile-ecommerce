@@ -1,6 +1,6 @@
 import styled, {createGlobalStyle} from "styled-components";
 import {Field} from "formik";
-import {IModalProps} from "@/interfaces/interfaces";
+import {ColorProps, IModalProps} from "@/interfaces/interfaces";
 import Link from "next/link";
 
 
@@ -236,3 +236,6 @@ export const GrayButtonWrapper = styled.button`
     color: #d87d4a;
   }
 `
+
+export const BGWrapper = styled.div<ColorProps>`
+  background-color: ${props => props.color};`

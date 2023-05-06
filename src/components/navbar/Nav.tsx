@@ -1,11 +1,8 @@
 import React, {FunctionComponent} from 'react';
 import styled from "styled-components";
 import {NavLink} from "@/styles/global";
+import {NavProps} from "@/interfaces/interfaces";
 
-interface OwnProps {
-}
-
-type Props = OwnProps;
 
 const MenuWrapper = styled.div`
   margin: 48px auto;
@@ -28,7 +25,8 @@ const MenuWrapper = styled.div`
   }
 `;
 
-const Nav: FunctionComponent<Props> = (props) => {
+
+const Nav: FunctionComponent = () => {
 
     return (
         <MenuWrapper>

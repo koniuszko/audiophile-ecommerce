@@ -12,6 +12,11 @@ const OrdersPreviewWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media (min-width: 768px) {
+    margin: 0 auto;
+    width: 540px;
+  }
 `
 
 

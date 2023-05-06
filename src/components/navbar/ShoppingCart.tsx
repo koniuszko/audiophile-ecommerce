@@ -52,6 +52,10 @@ const CartContentWrapper = styled.div`
     right: 50px;
     transform: initial;
   }
+
+  @media (min-width: 1440px) {
+    right: calc((100vw - 1440px) / 2 + 200px);
+  }
 `
 
 const CartItemWrapper = styled.div`

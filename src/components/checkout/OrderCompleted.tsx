@@ -56,7 +56,7 @@ export const OrderCompletionWrapper = styled.div<IModalProps>`
 `;
 
 export const OrderCompletionContent = styled.div`
-  width: 90%;
+  width: 350px;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -78,11 +78,15 @@ export const OrderCompletionContent = styled.div`
 
   @media (min-width: 768px) {
     padding: 48px;
-    width: 70%;
+    width: 540px;
 
     p {
       align-self: flex-start;
     }
+  }
+
+  @media (min-width: 1440px) {
+    width: 540px;
   }
 `
 

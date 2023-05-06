@@ -24,6 +24,12 @@ const AccountSection = styled.section`
   @media (min-width: 768px) {
     min-height: calc(100vh - 90px - 383px);
   }
+
+  @media (min-width: 1440px) {
+    margin: 0 auto;
+    min-height: calc(100vh - 90px - 408px);
+    width: 1100px;
+  }
 `
 
 

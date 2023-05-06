@@ -12,6 +12,8 @@ import MobileMenuModal from "@/components/navbar/MobileMenuModal";
 import ShoppingCart from "@/components/navbar/ShoppingCart";
 import {useSelector} from "react-redux";
 import {selectCartItems} from "@/features/cart/cartSlice";
+import Nav from "@/components/navbar/Nav";
+import useWidth from "@/utils/hooks/useWidth";
 
 
 const NavbarWrapper = styled.nav`
@@ -45,12 +47,25 @@ const NavbarWrapper = styled.nav`
       margin-left: auto;
     }
   }
+
+  @media (min-width: 1440px) {
+    margin: 0 auto;
+    justify-content: space-between;
+    width: 1100px;
+    padding: 32px 0;
+
+    .account {
+      margin-left: 0;
+    }
+  }
 `
 
 
 const Navbar: FunctionComponent = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
+
+    const width = useWidth();
 
     const cartItems = useSelector(selectCartItems);
 
@@ -62,21 +77,20 @@ const Navbar: FunctionComponent = () => {
         }
     }, [isMenuOpen, isCartOpen])
 
-
     return (
         <>
             <NavbarWrapper>
-                <button onClick={() => {
+                {width < 1440 && <button onClick={() => {
                     setIsMenuOpen(!isMenuOpen)
                 }} className='menu'>
                     <Image src={!isMenuOpen ? menuIcon : exitIcon} alt={'menu-icon'} width={20}
                            height={20}/>
-                </button>
+                </button>}
                 <Link href={'/'}>
                     <Image src={logo} alt={'logo'} width={143} height={25}/>
                 </Link>
+                {width > 1440 && <Nav/>}
                 <div className="account">
-
                     <button onClick={() => {
                         setIsCartOpen(!isCartOpen);
                     }}>

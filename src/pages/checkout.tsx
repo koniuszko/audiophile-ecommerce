@@ -5,6 +5,7 @@ import CheckoutForm from "@/components/checkout/CheckoutForm";
 import {useSelector} from "react-redux";
 import {selectCartItems} from "@/features/cart/cartSlice";
 import {H3} from "@/styles/textStyles";
+import {BGWrapper} from "@/styles/global";
 
 const SectionWrapper = styled.section`
   background-color: #fafafa;
@@ -12,6 +13,13 @@ const SectionWrapper = styled.section`
 
   @media (min-width: 768px) {
     padding: 32px 40px 96px;
+    min-height: calc(100vh - 90px - 383px);
+  }
+  @media (min-width: 1440px) {
+    padding: 80px 0 96px;
+    margin: 0 auto;
+    min-height: calc(100vh - 90px - 408px);
+    width: 1100px;
   }
 `
 
@@ -24,10 +32,12 @@ export default function Checkout() {
     const cartItems = useSelector(selectCartItems)
     return (
         <MainLayout>
-            <SectionWrapper>
-                <GoBackButton/>
-                {cartItems.length > 0 ? <CheckoutForm/> : <EmptyCart>Cart is empty</EmptyCart>}
-            </SectionWrapper>
+            <BGWrapper color={'#fafafa'}>
+                <SectionWrapper>
+                    <GoBackButton/>
+                    {cartItems.length > 0 ? <CheckoutForm/> : <EmptyCart>Cart is empty</EmptyCart>}
+                </SectionWrapper>
+            </BGWrapper>
         </MainLayout>
     )
 }

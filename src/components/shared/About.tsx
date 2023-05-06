@@ -33,6 +33,26 @@ const AboutWrapper = styled.section`
       padding: 0 46px;
     }
   }
+
+  @media (min-width: 1440px) {
+    width: 1100px;
+    margin: 0 auto;
+    padding: 100px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 125px;
+
+    h2 {
+      margin: 0 0 32px;
+      text-align: left;
+    }
+
+    .about-description {
+      padding: 0;
+      text-align: left;
+    }
+  }
 `
 
 const About: FunctionComponent = () => {
@@ -47,19 +67,22 @@ const About: FunctionComponent = () => {
         height: 300
     } : {
         img: bestGearDesktop,
-        width: 1110,
-        height: 300
+        width: 540,
+        height: 588
     }
     return (
         <AboutWrapper>
             <Image src={bestGear.img} alt={"best-gear"} width={bestGear.width} height={bestGear.height}/>
-            <BlackH2>Bringing you the <ColorText>best</ColorText> audio gear</BlackH2>
-            <Paragraph className="about-description">
-                Located at the heart of New York City, Audiophile is the premier store for high end headphones,
-                earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms
-                available for you to browse and experience a wide range of our products. Stop by our store to meet some
-                of the fantastic people who make Audiophile the best place to buy your portable audio equipment.
-            </Paragraph>
+            <div className="about-container">
+                <BlackH2>Bringing you the <ColorText>best</ColorText> audio gear</BlackH2>
+                <Paragraph className="about-description">
+                    Located at the heart of New York City, Audiophile is the premier store for high end headphones,
+                    earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms
+                    available for you to browse and experience a wide range of our products. Stop by our store to meet
+                    some
+                    of the fantastic people who make Audiophile the best place to buy your portable audio equipment.
+                </Paragraph>
+            </div>
         </AboutWrapper>
     );
 };

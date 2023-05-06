@@ -96,6 +96,24 @@ const CheckoutWrapper = styled.section`
   .price-group {
     width: 100%;
   }
+
+  @media (min-width: 1440px) {
+    width: 1100px;
+
+    .form {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .checkout {
+      width: 60%;
+    }
+
+    .summary {
+      width: 40%;
+    }
+  }
 `
 
 const CartItemWrapper = styled.div`

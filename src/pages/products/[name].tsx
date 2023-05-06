@@ -48,6 +48,12 @@ const ProductSection = styled.section`
     gap: 24px;
   }
 
+  .feature-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
   .product-gallery {
     display: flex;
     flex-direction: column;
@@ -95,6 +101,32 @@ const ProductSection = styled.section`
       align-items: center;
     }
   }
+
+  @media (min-width: 1440px) {
+    width: 1100px;
+    margin: 0 auto;
+    padding: 80px 0 0;
+
+    .feature-container {
+      width: 60%;
+    }
+
+    .includes-container {
+      flex-direction: column;
+      gap: 32px;
+      margin: 0;
+    }
+
+    .flex-container {
+      display: flex;
+      gap: 125px;
+      margin: 80px auto;
+    }
+
+    .product-gallery {
+      height: 592px;
+    }
+  }
 `
 
 const ButtonsWrapper = styled.div`
@@ -131,12 +163,12 @@ export default function Product({categories, product, products}: ProductPageProp
         galleryBigHeight: 368,
     } : {
         screenSize: 'desktop',
-        mainWidth: 527,
-        mainHeight: 527,
-        gallerySmallWidth: 75,
-        gallerySmallHeight: 75,
-        galleryBigWidth: 527,
-        galleryBigHeight: 527,
+        mainWidth: 540,
+        mainHeight: 560,
+        gallerySmallWidth: 445,
+        gallerySmallHeight: 280,
+        galleryBigWidth: 635,
+        galleryBigHeight: 592,
     }
 
     return (
@@ -164,29 +196,34 @@ export default function Product({categories, product, products}: ProductPageProp
                         </ButtonsWrapper>
                     </div>
                 </div>
-                <H3>
-                    Features
-                </H3>
-                {product.features.map((feature, index) => (
-                    <Paragraph key={index}>
-                        {feature}
-                    </Paragraph>
-                ))}
-                <div className="includes-container">
-                    <H3>
-                        In the box
-                    </H3>
-                    <ul className="product-includes">
-                        {product.inTheBox.map((include, index) => (
-                            <li key={index}>
-                                <Paragraph>
-                                    <ColorText
-                                        className='include-quantity'>{include.quantity}x </ColorText>{include.item}
-                                </Paragraph>
-                            </li>
+                <div className="flex-container">
+                    <div className="feature-container">
+                        <H3>
+                            Features
+                        </H3>
+                        {product.features.map((feature, index) => (
+                            <Paragraph key={index}>
+                                {feature}
+                            </Paragraph>
                         ))}
-                    </ul>
+                    </div>
+                    <div className="includes-container">
+                        <H3>
+                            In the box
+                        </H3>
+                        <ul className="product-includes">
+                            {product.inTheBox.map((include, index) => (
+                                <li key={index}>
+                                    <Paragraph>
+                                        <ColorText
+                                            className='include-quantity'>{include.quantity}x </ColorText>{include.item}
+                                    </Paragraph>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
+
                 <div className="product-gallery">
                     <Image src={`/assets/${product.productName}/${productImages.screenSize}/image-gallery-1.jpg`}
                            alt={`${product.productName} image`}

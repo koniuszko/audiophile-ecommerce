@@ -2,13 +2,7 @@ import React, {FunctionComponent} from 'react';
 import {useRouter} from "next/router";
 import {GrayButtonWrapper} from "@/styles/components";
 
-interface OwnProps {
-}
-
-type Props = OwnProps;
-
-
-const GoBackButton: FunctionComponent<Props> = (props) => {
+const GoBackButton: FunctionComponent = () => {
     const router = useRouter();
     return (
         <GrayButtonWrapper

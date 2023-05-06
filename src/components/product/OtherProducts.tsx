@@ -48,6 +48,18 @@ const OtherProductsWrapper = styled.div`
       gap: 10px;
     }
   }
+
+  @media (min-width: 1440px) {
+    width: 1110px;
+    padding: 0;
+
+    .product-container {
+      width: 100%;
+      padding: 0;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 `
 
 const OtherProductCard = ({product}: { product: IProduct }) => {
@@ -61,10 +73,8 @@ const OtherProductCard = ({product}: { product: IProduct }) => {
                 height: 318
             } :
             {
-                size: 'desktop', width: 327, height: 120
+                size: 'desktop', width: 350, height: 318
             };
-
-
     return (
         <OtherProductCardWrapper>
             <Image src={`/assets/shared/${imageProps.size}/${product.productName}.jpg`}

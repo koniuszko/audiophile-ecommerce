@@ -26,6 +26,10 @@ export const CategoryCardWrapper = styled.div`
     height: 165px;
     width: 30%;
   }
+
+  @media (min-width: 1440px) {
+    width: 350px;
+  }
 `
 
 
