@@ -20,26 +20,6 @@ export interface ProductPageProps {
     categories: string[],
 }
 
-// export interface ProductProps {
-//     _id: string,
-//     productName: string,
-//     shortName: string,
-//     productTitle: string,
-//     price: number,
-//     description: string,
-//     category: 'headphones' | 'speakers' | 'earphones',
-//     features: string[],
-//     inTheBox: [
-//         {
-//             quantity: number,
-//             item: string,
-//
-//         }
-//     ],
-//     isNewProduct?: boolean,
-//
-// }
-
 export interface LoginSwitchProps {
     register: boolean,
     setRegister: (value: boolean) => void
@@ -185,4 +165,8 @@ export interface ShoppingCartProps {
 
 export interface CategoriesNavProps {
     categories: string[],
+}
+
+export interface CategoryHeaderProps {
+    currentCategory: string,
 }

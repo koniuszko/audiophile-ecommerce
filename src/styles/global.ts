@@ -196,6 +196,10 @@ export const StyledHeader = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (min-width: 768px) {
+    height: 246px;
+  }
 `
 
 export const CategoryCardWrapper = styled.div`

@@ -5,6 +5,7 @@ import Image from "next/image";
 import NewProduct from "@/components/shared/NewProduct";
 import {BlackH2, Paragraph} from "@/styles/textStyles";
 import SeeProductButton from "@/components/shared/SeeProductButton";
+import useWidth from "@/utils/hooks/useWidth";
 
 
 const CardWrapper = styled.div`
@@ -16,6 +17,13 @@ const CardWrapper = styled.div`
   img {
     border-radius: 8px;
   }
+
+  @media (min-width: 768px) {
+    .card-description {
+      padding: 0 80px;
+      text-align: center;
+    }
+  }
 `
 
 const ProductsWrapper = styled.div`
@@ -25,17 +33,25 @@ const ProductsWrapper = styled.div`
   align-items: center;
   gap: 120px;
 
+  @media (min-width: 768px) {
+    padding: 120px 40px 0;
+  }
 `
 const ProductCard = ({product}: { product: IProduct }) => {
+    const width = useWidth();
+
+    const screenSize = width < 768 ? {img: 'mobile', width: 327, height: 352}
+        : width < 1440 ? {img: 'tablet', width: 689, height: 352} : {img: 'desktop', width: 689, height: 352};
+
     return (
         <CardWrapper>
-            <Image src={`/assets/${product.productName}/mobile/image-category-page-preview.jpg`}
-                   alt={product.productName} width={327} height={352}/>
+            <Image src={`/assets/${product.productName}/${screenSize.img}/image-category-page-preview.jpg`}
+                   alt={product.productName} width={screenSize.width} height={screenSize.height}/>
             {product.isNewProduct && <NewProduct/>}
-            <BlackH2>
+            <BlackH2 className="card-description">
                 {product.productTitle}
             </BlackH2>
-            <Paragraph>
+            <Paragraph className="card-description">
                 {product.description}
             </Paragraph>
             <SeeProductButton type={'primary'} path={`/products/${product.productName}`}/>

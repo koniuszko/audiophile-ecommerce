@@ -25,6 +25,14 @@ const AboutWrapper = styled.section`
   p {
     text-align: center;
   }
+
+  @media (min-width: 768px) {
+    padding: 0 40px 120px;
+
+    .about-description {
+      padding: 0 46px;
+    }
+  }
 `
 
 const About: FunctionComponent = () => {
@@ -46,7 +54,7 @@ const About: FunctionComponent = () => {
         <AboutWrapper>
             <Image src={bestGear.img} alt={"best-gear"} width={bestGear.width} height={bestGear.height}/>
             <BlackH2>Bringing you the <ColorText>best</ColorText> audio gear</BlackH2>
-            <Paragraph>
+            <Paragraph className="about-description">
                 Located at the heart of New York City, Audiophile is the premier store for high end headphones,
                 earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms
                 available for you to browse and experience a wide range of our products. Stop by our store to meet some

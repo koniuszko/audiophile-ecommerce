@@ -1,12 +1,9 @@
 import React, {FunctionComponent} from 'react';
 import {WhiteH2} from "@/styles/textStyles";
 import {StyledHeader} from "@/styles/global";
+import {CategoryHeaderProps} from "@/interfaces/interfaces";
 
-interface OwnProps {
-    currentCategory: string
-}
-
-type Props = OwnProps;
+type Props = CategoryHeaderProps;
 
 const CategoryHeader: FunctionComponent<Props> = ({currentCategory}) => {
 
