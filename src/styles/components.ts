@@ -34,6 +34,7 @@ export const GrayButtonWrapper = styled.button`
   font-weight: 500;
   color: #808080;
   width: 80px;
+  text-align: left;
 
   &:hover {
     color: #d87d4a;

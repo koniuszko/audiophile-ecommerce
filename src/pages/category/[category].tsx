@@ -21,6 +21,8 @@ export default function Category({products, categories, currentCategory}: Catego
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
+
+
     const res = await axios.get(`${API_URL}/api/products`)
         .then((res) => {
             return res.data

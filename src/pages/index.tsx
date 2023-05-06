@@ -41,7 +41,9 @@ export default function Home({categories, order}: HomePageProps) {
 }
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-    const res = await axios.get("http://localhost:3000/api/products")
+    const host = context.req.headers.host
+
+    const res = await axios.get(`http://${host}/api/products`)
         .then((res) => {
             return res.data
         }).catch((err) => {
@@ -51,7 +53,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
     let order: IOrder[] | null = null;
     if (context.req.url?.includes("orderId")) {
-        order = await axios.get(`http://localhost:3000/api/orders/${context.query.orderId}`)
+        order = await axios.get(`http://${host}/api/orders/${context.query.orderId}`)
             .then((res) => {
                 return res.data
             }).catch((err) => {

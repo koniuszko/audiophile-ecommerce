@@ -1,16 +1,11 @@
 import React, {FunctionComponent} from 'react';
-import {IProduct} from "@/interfaces/interfaces";
+import {IProduct, ProductsListProps} from "@/interfaces/interfaces";
 import styled from "styled-components";
 import {H3, H4} from "@/styles/textStyles";
 import Image from "next/image";
 import SeeProductButton from "@/components/shared/SeeProductButton";
 import {useRouter} from "next/router";
-
-interface OwnProps {
-    products: IProduct[]
-}
-
-type Props = OwnProps;
+import useWidth from "@/utils/hooks/useWidth";
 
 
 const OtherProductCardWrapper = styled.div`
@@ -22,6 +17,10 @@ const OtherProductCardWrapper = styled.div`
   img {
     border-radius: 8px;
   }
+
+  @media (min-width: 768px) {
+    gap: 32px;
+  }
 `
 
 const OtherProductsWrapper = styled.div`
@@ -30,14 +29,46 @@ const OtherProductsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 56px;
+  gap: 24px;
+
+  .product-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 0 40px;
+
+    .product-container {
+      padding: 0 40px;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 10px;
+    }
+  }
 `
 
 const OtherProductCard = ({product}: { product: IProduct }) => {
+
+    const width = useWidth();
+
+    const imageProps = width < 768 ? {size: 'mobile', width: 327, height: 120} :
+        width < 1440 ? {
+                size: 'tablet',
+                width: 223,
+                height: 318
+            } :
+            {
+                size: 'desktop', width: 327, height: 120
+            };
+
+
     return (
         <OtherProductCardWrapper>
-            <Image src={`/assets/shared/mobile/${product.productName}.jpg`}
-                   alt={product.productName} width={327} height={120}/>
+            <Image src={`/assets/shared/${imageProps.size}/${product.productName}.jpg`}
+                   alt={product.productName} width={imageProps.width} height={imageProps.height}/>
             <H4>
                 {product.productTitle.replace("headphones", "")}
             </H4>
@@ -45,6 +76,8 @@ const OtherProductCard = ({product}: { product: IProduct }) => {
         </OtherProductCardWrapper>
     )
 }
+
+type Props = ProductsListProps;
 
 const OtherProducts: FunctionComponent<Props> = ({products}) => {
     const router = useRouter();
@@ -58,9 +91,12 @@ const OtherProducts: FunctionComponent<Props> = ({products}) => {
             <H3>
                 You may also like
             </H3>
-            {randomProducts.map((product, index) => (
-                <OtherProductCard key={index} product={product}/>
-            ))}
+            ,
+            <div className="product-container">
+                {randomProducts.map((product, index) => (
+                    <OtherProductCard key={index} product={product}/>
+                ))}
+            </div>
         </OtherProductsWrapper>
     );
 };
