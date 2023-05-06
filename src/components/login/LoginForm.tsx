@@ -32,6 +32,10 @@ export const LoginWrapper = styled.section`
     }
   }
 
+  @media (min-width: 768px) {
+    width: 480px;
+
+  }
 `
 
 
@@ -83,11 +87,11 @@ const LoginForm = () => {
                 <Form className="form">
                     <div className="form-input">
                         <FormLabel className="form-label" htmlFor="email">Email</FormLabel>
-                        <InputField className="form-input" name="email" type="email" placeholder="Email"/>
+                        <InputField className="form-input" name="email" type="email"/>
                     </div>
                     <div className="form-input">
                         <FormLabel className="form-label" htmlFor="email">Password</FormLabel>
-                        <InputField className="form-input" name="password" type="password" placeholder="Password"/>
+                        <InputField className="form-input" name="password" type="password"/>
                     </div>
                     <div className="form-checkbox">
                         <Field name="remember" type="checkbox"/>

@@ -57,7 +57,7 @@ export const OrderCompletionWrapper = styled.div<IModalProps>`
 
 export const OrderCompletionContent = styled.div`
   width: 90%;
-  height: 90vh;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,6 +74,15 @@ export const OrderCompletionContent = styled.div`
 
   h3, p {
     text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    padding: 48px;
+    width: 70%;
+
+    p {
+      align-self: flex-start;
+    }
   }
 `
 
@@ -107,7 +116,6 @@ const OrderCompleted: FunctionComponent<Props> = ({order, isOpen, setIsOpen}) =>
     return (
         <OrderCompletionWrapper isOpen={isOpen}>
             <OrderCompletionContent>
-
                 <Image className='check-icon' src={checkIcon} alt={'check-icon'} width={64} height={64}/>
                 <H3>Thank you for your order</H3>
                 <Paragraph>

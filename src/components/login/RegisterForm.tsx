@@ -21,6 +21,7 @@ export const RegisterWrapper = styled.section`
       width: 100%;
       display: flex;
       flex-direction: column;
+      gap: 8px;
     }
   }
 
@@ -36,9 +37,10 @@ export const RegisterWrapper = styled.section`
     margin-right: 6px;
   }
 
+  @media (min-width: 768px) {
+    width: 480px;
+  }
 `
-
-const url = "/api/register"
 
 const RegisterForm = () => {
     const [resMessage, setResMessage] = useState("");
@@ -57,7 +59,7 @@ const RegisterForm = () => {
                 validationSchema={RegisterFormValidator}
                 onSubmit={async (values) => {
                     await sleep(500);
-                    axios.post(url, values)
+                    axios.post(`/api/register`, values)
                         .then(res => {
                             console.log(res);
                             if (res.status === 201) {

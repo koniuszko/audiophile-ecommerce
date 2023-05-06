@@ -12,6 +12,7 @@ import {GrayButtonWrapper} from "@/styles/global";
 import {BlackH2, BlackParagraph, ColorText} from "@/styles/textStyles";
 
 const AccountSection = styled.section`
+  min-height: calc(100vh - 90px - 664px);
   padding: 24px;
 
   .account-header {
@@ -19,12 +20,14 @@ const AccountSection = styled.section`
     display: flex;
     justify-content: space-between;
   }
+
+  @media (min-width: 768px) {
+    min-height: calc(100vh - 90px - 383px);
+  }
 `
 
 
 export default function Account({user, orders}: UserDataProps) {
-    console.log(user)
-    console.log(orders)
     const {name} = user;
 
     return (
@@ -37,8 +40,8 @@ export default function Account({user, orders}: UserDataProps) {
                     </BlackParagraph>
                     <GrayButtonWrapper onClick={() => signOut()}>Logout</GrayButtonWrapper>
                 </div>
+                <UserOrdersPreview orders={orders}/>
             </AccountSection>
-            <UserOrdersPreview orders={orders}/>
         </MainLayout>
     )
 }
@@ -58,7 +61,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const userData = JSON.parse(JSON.stringify(user))
     const orders = await Order?.find({userId: context.query.id})
     const userOrders = JSON.parse(JSON.stringify(orders))
-    console.log(userOrders)
     return {
         props: {
             user: userData,

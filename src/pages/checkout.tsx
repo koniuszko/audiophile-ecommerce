@@ -9,6 +9,10 @@ import {H3} from "@/styles/textStyles";
 const SectionWrapper = styled.section`
   background-color: #fafafa;
   padding: 16px 24px 96px;
+
+  @media (min-width: 768px) {
+    padding: 32px 40px 96px;
+  }
 `
 
 const EmptyCart = styled(H3)`

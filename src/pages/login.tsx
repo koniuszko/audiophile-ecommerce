@@ -8,7 +8,13 @@ import {useRouter} from "next/router";
 import {getSession, useSession} from "next-auth/react";
 
 const LoginSection = styled.section`
-  //background-color: #FAFAFA;
+  @media (min-width: 768px) {
+    min-height: calc(100vh - 90px - 383px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `
 export default function Login() {
     const [register, setRegister] = useState(false);

@@ -15,11 +15,6 @@ import {CheckoutFormValidator} from "@/utils/validators";
 import {getSession, useSession} from "next-auth/react";
 
 
-interface OwnProps {
-}
-
-type Props = OwnProps;
-
 const CheckoutWrapper = styled.section`
   margin: 24px auto;
 
@@ -50,6 +45,24 @@ const CheckoutWrapper = styled.section`
       text-align: left;
       align-self: flex-start;
     }
+  }
+
+  .billing-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .shipping-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .payment-method {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 
   .summary {
@@ -126,14 +139,13 @@ const CartItem = (item: cartItem) => {
                 <Paragraph>
                     x{item.quantity}
                 </Paragraph>
-
             </div>
         </CartItemWrapper>
     )
 }
 
 
-const CheckoutForm: FunctionComponent<Props> = () => {
+const CheckoutForm: FunctionComponent = () => {
     const [radioValue, setRadioValue] = useState('credit-card');
     const [userId, setUserId] = useState("unregistered");
 
@@ -149,7 +161,6 @@ const CheckoutForm: FunctionComponent<Props> = () => {
             }
         })
     }, [])
-
 
     const checkoutHandler = async (address: IAddress, paymentMethod: string, products: cartItem[], userId: string) => {
         await sleep(500);
@@ -182,62 +193,71 @@ const CheckoutForm: FunctionComponent<Props> = () => {
                         <BlackH2>
                             Checkout
                         </BlackH2>
-                        <Subtitle>
-                            Billing Details
-                        </Subtitle>
-                        <div className="form-input">
-                            <FormLabel htmlFor="name">Name</FormLabel>
-                            <ErrorMessage name="name"
-                                          render={msg => <ErrorMsg
-                                              className={"error-message"}>{msg}</ErrorMsg>}/>
-                            <InputField name="name" type="text"/>
+                        <div className="billing-details">
+                            <Subtitle>
+                                Billing Details
+                            </Subtitle>
+                            <div className="form-input">
+                                <FormLabel htmlFor="name">Name</FormLabel>
+                                <ErrorMessage name="name"
+                                              render={msg => <ErrorMsg
+                                                  className={"error-message"}>{msg}</ErrorMsg>}/>
+                                <InputField name="name" type="text"/>
+                            </div>
+                            <div className="form-input">
+                                <FormLabel htmlFor="email">Email Address</FormLabel>
+                                <ErrorMessage name="email"
+                                              render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
+                                <InputField name="email" type="email"/>
+                            </div>
+                            <div className="form-input">
+                                <FormLabel htmlFor="phone">Phone number</FormLabel>
+                                <ErrorMessage name="phone"
+                                              render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
+                                <InputField name="phone" type="phone"/>
+                            </div>
                         </div>
-                        <div className="form-input">
-                            <FormLabel htmlFor="email">Email Address</FormLabel>
-                            <ErrorMessage name="email"
-                                          render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
-                            <InputField name="email" type="email"/>
+
+                        <div className="shipping-info">
+                            <Subtitle>
+                                Shipping Info
+                            </Subtitle>
+                            <div className="form-input">
+                                <FormLabel htmlFor="street">Your address</FormLabel>
+                                <ErrorMessage name="street"
+                                              render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
+                                <InputField name="street" type="street"/>
+                            </div>
+                            <div className="form-input">
+                                <FormLabel htmlFor="zip">ZIP code</FormLabel>
+                                <ErrorMessage name="zip"
+                                              render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
+                                <InputField name="zip" type="zip"/>
+                            </div>
+                            <div className="form-input">
+                                <FormLabel htmlFor="city">City</FormLabel>
+                                <ErrorMessage name="city"
+                                              render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
+                                <InputField name="city" type="city"/>
+                            </div>
+                            <div className="form-input">
+                                <FormLabel htmlFor="country">Country</FormLabel>
+                                <ErrorMessage name="country"
+                                              render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
+                                <InputField name="country" type="country"/>
+                            </div>
                         </div>
-                        <div className="form-input">
-                            <FormLabel htmlFor="phone">Phone number</FormLabel>
-                            <ErrorMessage name="phone"
-                                          render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
-                            <InputField name="phone" type="phone"/>
+
+                        <div className="payment-details">
+                            <Subtitle>
+                                Payment details
+                            </Subtitle>
+                            <div className="form-input radio">
+                                <FormLabel htmlFor="payment">Payment method</FormLabel>
+                                <PaymentRadio radioValue={radioValue} setRadioValue={setRadioValue}/>
+                            </div>
                         </div>
-                        <Subtitle>
-                            Shipping Info
-                        </Subtitle>
-                        <div className="form-input">
-                            <FormLabel htmlFor="street">Your address</FormLabel>
-                            <ErrorMessage name="street"
-                                          render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
-                            <InputField name="street" type="street"/>
-                        </div>
-                        <div className="form-input">
-                            <FormLabel htmlFor="zip">ZIP code</FormLabel>
-                            <ErrorMessage name="zip"
-                                          render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
-                            <InputField name="zip" type="zip"/>
-                        </div>
-                        <div className="form-input">
-                            <FormLabel htmlFor="city">City</FormLabel>
-                            <ErrorMessage name="city"
-                                          render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
-                            <InputField name="city" type="city"/>
-                        </div>
-                        <div className="form-input">
-                            <FormLabel htmlFor="country">Country</FormLabel>
-                            <ErrorMessage name="country"
-                                          render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
-                            <InputField name="country" type="country"/>
-                        </div>
-                        <Subtitle>
-                            Payment details
-                        </Subtitle>
-                        <div className="form-input radio">
-                            <FormLabel htmlFor="payment">Payment method</FormLabel>
-                            <PaymentRadio radioValue={radioValue} setRadioValue={setRadioValue}/>
-                        </div>
+
                     </div>
                     <div className="summary">
                         <H6>

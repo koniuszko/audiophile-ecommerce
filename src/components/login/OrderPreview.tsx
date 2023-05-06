@@ -15,6 +15,7 @@ const SummaryWrapper = styled.div`
 
   .summary-date {
     padding: 12px 24px 0;
+    align-self: flex-end;
   }
 
   .grand-total {
@@ -32,7 +33,7 @@ const CartItemWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 12px 24px;
+  margin: 0 24px;
 
   .cart-item {
     display: flex;
