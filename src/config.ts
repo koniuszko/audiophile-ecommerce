@@ -1,2 +1,2 @@
-export const API_URL = "htttps://audiophile-ecommerce-sigma.vercel.app";
+export const API_URL = "https://audiophile-ecommerce-sigma.vercel.app";
 
