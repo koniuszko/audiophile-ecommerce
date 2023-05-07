@@ -1,7 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import styled from "styled-components";
 import {NavLink} from "@/styles/global";
-import {NavProps} from "@/interfaces/interfaces";
 
 
 const MenuWrapper = styled.div`

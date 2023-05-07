@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import {BlackParagraph, H6, Paragraph, WhiteParagraph} from "@/styles/textStyles";
+import {BlackParagraph, Paragraph, WhiteParagraph} from "@/styles/textStyles";
 import {totalSummary} from "@/utils/helpers";
 import styled from "styled-components";
 import {cartItem, OrderPreviewProps} from "@/interfaces/interfaces";

@@ -60,7 +60,7 @@ To get a local copy of the project up and running, follow these steps:
    NEXTAUTH_SECRET=<your_nextauth_url>
    STRIPE_SIGNING_SECRET=<your_stripe_signing_secret>
    ```
-    - Change the API_URL in the congif.ts file to your Next.js public server URL.
+    - Change the API_URL in the config.ts file to your Next.js public server URL.
 
 4. Run the development server:
 

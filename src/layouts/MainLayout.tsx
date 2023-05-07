@@ -1,7 +1,6 @@
 import {ChildrenProps} from "@/interfaces/interfaces";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
-import styled from "styled-components";
 import {BGWrapper} from "@/styles/global";
 
 
