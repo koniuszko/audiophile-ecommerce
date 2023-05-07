@@ -5,7 +5,7 @@ import * as Yup from 'yup'
 import React, {useState} from "react";
 import {LoginUserProps} from "@/interfaces/interfaces";
 import {ErrorMsg, FormLabel, InputField, PrimaryButton} from "@/styles/global";
-import {router} from "next/client";
+import {useRouter} from "next/router";
 
 export const LoginWrapper = styled.section`
   width: 280px;
@@ -51,6 +51,8 @@ export const loginUser = async ({email, password, remember}: LoginUserProps) => 
 
 const LoginForm = () => {
     const [validationError, setValidationError] = useState(false);
+
+    const router = useRouter();
 
     const {data: session} = useSession()
     return (
