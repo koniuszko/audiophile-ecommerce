@@ -95,10 +95,8 @@ The project is structured as follows:
 
 ## Screenshots
 
-![Zrzut ekranu 2023-05-7 o 12.02.10.png](..%2F..%2FDesktop%2FZrzut%20ekranu%202023-05-7%20o%2012.02.10.png)
-![Zrzut ekranu 2023-05-7 o 12.04.52.png](..%2F..%2FDesktop%2FZrzut%20ekranu%202023-05-7%20o%2012.04.52.png)
-![Zrzut ekranu 2023-05-7 o 12.05.03.png](..%2F..%2FDesktop%2FZrzut%20ekranu%202023-05-7%20o%2012.05.03.png)
-![Zrzut ekranu 2023-05-7 o 12.05.39.png](..%2F..%2FDesktop%2FZrzut%20ekranu%202023-05-7%20o%2012.05.39.png)
+![screenshot1.png](screenshots%2Fscreenshot1.png)
+![screenshot2.png](screenshots%2Fscreenshot2.png)![screenshot3.png](screenshots%2Fscreenshot3.png)![screenshot4.png](screenshots%2Fscreenshot4.png)
 
 ## Contribution
 
@@ -119,4 +117,8 @@ The project is licensed under the MIT License. Feel free to use and modify the c
 
 ## Working Demo
 
-You can view a live demo of the Audiophile website here: 
+You can view a live demo of the Audiophile website here:
+https://audiophile-ecommerce-sigma.vercel.app/
+
+To test the checkout process, you can use the following test card details: 4242 4242 4242 4242, any future date, and
+any 3-digit CVC code.
