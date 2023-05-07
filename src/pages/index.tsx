@@ -43,13 +43,15 @@ function Home({categories, order}: HomePageProps) {
 
 export default Home
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-    const res = await axios.get(`${API_URL}/api/products`)
-        .then((res) => {
-            return res.data
-        }).catch((err) => {
-            console.log(err)
-        })
-    const categories = [...new Set<string>(res.map((product: IProduct) => product.category))]
+    // const res = await axios.get(`${API_URL}/api/products`)
+    //     .then((res) => {
+    //         return res.data
+    //     }).catch((err) => {
+    //         console.log(err)
+    //     })
+    // const categories = [...new Set<string>(res.map((product: IProduct) => product.category))]
+
+    const categories = ['headphones', 'speakers', 'earphones']
 
     let order: IOrder[] | null = null;
     if (context.req.url?.includes("orderId")) {
