@@ -28,7 +28,8 @@ const EmptyCart = styled(H3)`
   text-align: center;
   color: #000;
 `
-export default function Checkout() {
+
+function Checkout() {
     const cartItems = useSelector(selectCartItems)
     return (
         <MainLayout>
@@ -41,3 +42,5 @@ export default function Checkout() {
         </MainLayout>
     )
 }
+
+export default Checkout

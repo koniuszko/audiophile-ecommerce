@@ -28,12 +28,12 @@ const AccountSection = styled.section`
   @media (min-width: 1440px) {
     margin: 0 auto;
     min-height: calc(100vh - 90px - 408px);
-    width: 1100px;
+    //width: 1100px;
   }
 `
 
 
-export default function Account({user, orders}: UserDataProps) {
+function Account({user, orders}: UserDataProps) {
     const {name} = user;
 
     return (
@@ -51,6 +51,8 @@ export default function Account({user, orders}: UserDataProps) {
         </MainLayout>
     )
 }
+
+export default Account
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const token = await hasToken(context.req)

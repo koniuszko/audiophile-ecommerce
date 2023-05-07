@@ -10,7 +10,7 @@ import {HomePageProps, IOrder, IProduct} from "@/interfaces/interfaces";
 import {GetServerSidePropsContext} from "next";
 
 
-export default function Home({categories, order}: HomePageProps) {
+function Home({categories, order}: HomePageProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     useEffect(() => {
         if (window.location.href.includes("success")) {
@@ -40,6 +40,7 @@ export default function Home({categories, order}: HomePageProps) {
     )
 }
 
+export default Home
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     const host = context.req.headers.host
 

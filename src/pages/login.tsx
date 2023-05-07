@@ -16,7 +16,8 @@ const LoginSection = styled.section`
     align-items: center;
   }
 `
-export default function Login() {
+
+function LoginPage() {
     const [register, setRegister] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -28,7 +29,7 @@ export default function Login() {
         return () => {
             getSession().then((session) => {
                 if (session) {
-                    router.replace(`/login/${session.user.id}`)
+                    router.replace(`/account/${session.user.id}`)
                 } else {
                     setIsLoading(false)
                 }
@@ -46,3 +47,5 @@ export default function Login() {
         </MainLayout>
     )
 }
+
+export default LoginPage

@@ -136,7 +136,7 @@ const ButtonsWrapper = styled.div`
 
 const DynamicOthers = dynamic(() => import("@/components/product/OtherProducts"), {ssr: false})
 
-export default function Product({categories, product, products}: ProductPageProps) {
+function Product({categories, product, products}: ProductPageProps) {
     const [quantity, setQuantity] = useState(1)
 
     const width = useWidth();
@@ -243,6 +243,7 @@ export default function Product({categories, product, products}: ProductPageProp
     )
 }
 
+export default Product
 
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
     const res = await axios.get(`${API_URL}/api/products`)

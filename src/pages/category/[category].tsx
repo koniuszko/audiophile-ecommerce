@@ -8,7 +8,7 @@ import CategoryHeader from "@/components/category/CategoryHeader";
 import {CategoryPageProps} from "@/interfaces/interfaces";
 import {API_URL} from "@/config";
 
-export default function Category({products, categories, currentCategory}: CategoryPageProps) {
+function Category({products, categories, currentCategory}: CategoryPageProps) {
 
     return (
         <MainLayout>
@@ -19,6 +19,8 @@ export default function Category({products, categories, currentCategory}: Catego
         </MainLayout>
     )
 }
+
+export default Category
 
 export const getStaticProps: GetStaticProps = async (context) => {
 
