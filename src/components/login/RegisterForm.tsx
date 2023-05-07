@@ -100,7 +100,7 @@ const RegisterForm = () => {
                     <div className="checkbox-container">
                         <div>
                             <Field className="checkbox" name="acceptedTerms" type="checkbox"/>
-                            <FormLabel htmlFor="acceptedTerms">I accept website`&apos;`s terms and
+                            <FormLabel htmlFor="acceptedTerms">I accept website&apos;s terms and
                                 conditions.</FormLabel>
                         </div>
                         <ErrorMessage name="acceptedTerms"
