@@ -87,6 +87,7 @@ const CartItemWrapper = styled.div`
       width: 32px;
       font-size: 13px;
       font-weight: bold;
+      cursor: pointer;
 
       &:hover {
         color: #d87d4a;

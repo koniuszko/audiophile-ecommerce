@@ -53,13 +53,13 @@ const RadioWrapper = styled.div`
     font-size: 14px;
     font-weight: bold;
     padding-left: 16px;
+    line-height: 56px;
   }
 
   .form-radio {
     padding: 16px;
     display: flex;
     align-items: center;
-    //justify-content: space-between;
     height: 56px;
     border: 1px solid #cfcfcf;
     border-radius: 8px;

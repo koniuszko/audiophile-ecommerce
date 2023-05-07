@@ -21,6 +21,10 @@ const LinkWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 6px;
+
+    &:hover {
+      color: #d87d4a;
+    }
   }
 
 `

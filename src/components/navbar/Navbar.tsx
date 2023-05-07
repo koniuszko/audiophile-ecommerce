@@ -36,6 +36,10 @@ const NavbarWrapper = styled.nav`
     gap: 12px
   }
 
+  button {
+    cursor: pointer;
+  }
+
   @media (min-width: 768px) {
     justify-content: flex-start;
 

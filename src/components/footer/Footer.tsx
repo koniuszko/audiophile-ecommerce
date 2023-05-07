@@ -61,6 +61,14 @@ const SocialsWrapper = styled.div`
   justify-content: center;
   gap: 16px;
 
+  img {
+    cursor: pointer;
+
+    &:hover {
+      filter: invert(59%) sepia(38%) saturate(794%) hue-rotate(335deg) brightness(95%) contrast(88%)
+    }
+  }
+
   @media (min-width: 768px) {
     margin: 0;
   }

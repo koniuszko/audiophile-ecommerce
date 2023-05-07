@@ -86,14 +86,14 @@ const Button = styled.button`
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: .2s;
+  cursor: pointer;
 `
 
 export const PrimaryButton = styled(Button)`
   background-color: #D87D4A;
   border: none;
   color: #FFF;
-  cursor: pointer;
-
+  
   &:hover {
     background-color: #FBAF85;
   }
@@ -108,6 +108,7 @@ export const PrimaryBlackButton = styled(Button)`
   background-color: #000;
   border: none;
   color: #FFF;
+
 
   &:hover {
     background-color: #4C4C4C;
@@ -186,6 +187,12 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   color: #FFF;
   text-transform: uppercase;
+  transition: .2s;
+
+  &:hover {
+    color: #D87D4A;
+  }
+
 `
 
 export const StyledHeader = styled.header`

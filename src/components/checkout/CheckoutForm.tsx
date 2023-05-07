@@ -13,6 +13,7 @@ import Image from "next/image";
 import PaymentRadio from "@/components/checkout/PaymentRadio";
 import {CheckoutFormValidator} from "@/utils/validators";
 import {getSession, useSession} from "next-auth/react";
+import CashOnDeliveryDescription from "@/components/checkout/CashOnDeliveryDescription";
 
 
 const CheckoutWrapper = styled.section`
@@ -108,10 +109,12 @@ const CheckoutWrapper = styled.section`
 
     .checkout {
       width: 60%;
+      padding: 40px;
     }
 
     .summary {
       width: 40%;
+      padding: 40px;
     }
   }
 `
@@ -274,8 +277,8 @@ const CheckoutForm: FunctionComponent = () => {
                                 <FormLabel htmlFor="payment">Payment method</FormLabel>
                                 <PaymentRadio radioValue={radioValue} setRadioValue={setRadioValue}/>
                             </div>
+                            {radioValue === "cash-on-delivery" && <CashOnDeliveryDescription/>}
                         </div>
-
                     </div>
                     <div className="summary">
                         <H6>
@@ -322,7 +325,6 @@ const CheckoutForm: FunctionComponent = () => {
                             Continue & Pay
                         </PrimaryButton>
                     </div>
-
                 </Form>
             </Formik>
         </CheckoutWrapper>
