@@ -8,6 +8,7 @@ import OrderCompleted from "@/components/checkout/OrderCompleted";
 import {useEffect, useState} from "react";
 import {HomePageProps, IOrder, IProduct} from "@/interfaces/interfaces";
 import {GetServerSidePropsContext} from "next";
+import {API_URL} from "@/config";
 
 
 function Home({categories, order}: HomePageProps) {
@@ -42,9 +43,7 @@ function Home({categories, order}: HomePageProps) {
 
 export default Home
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-    const host = context.req.headers.host
-
-    const res = await axios.get(`https://${host}/api/products`)
+    const res = await axios.get(`${API_URL}/api/products`)
         .then((res) => {
             return res.data
         }).catch((err) => {
@@ -54,7 +53,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
     let order: IOrder[] | null = null;
     if (context.req.url?.includes("orderId")) {
-        order = await axios.get(`https://${host}/api/orders/${context.query.orderId}`)
+        order = await axios.get(`${API_URL}/api/orders/${context.query.orderId}`)
             .then((res) => {
                 return res.data
             }).catch((err) => {
