@@ -2,10 +2,10 @@ import React, {FunctionComponent} from 'react';
 import styled from "styled-components";
 import Image from "next/image";
 import {H6} from "@/styles/textStyles";
-import {CategoryCardProps, MobileMenuModalProps} from "@/interfaces/interfaces";
+import {CategoryCardProps, ModalProps} from "@/interfaces/interfaces";
 import ShopLink from "@/components/shared/ShopLink";
 import {CategoryCardWrapper} from "@/styles/components";
-import {GetStaticProps} from "next";
+import {handleContainerClick} from "@/utils/helpers";
 
 
 const categories = [
@@ -72,11 +72,11 @@ const CategoryCard = ({name, img, path}: CategoryCardProps) => {
 }
 
 
-type Props = MobileMenuModalProps;
-const MobileMenuModal: FunctionComponent<Props> = ({isOpen}) => {
+type Props = ModalProps;
+const MobileMenuModal: FunctionComponent<Props> = ({isOpen, setIsOpen}) => {
     return (
-        <MobileMenuWrapper isOpen={isOpen}>
-            <MobileMenuContent>
+        <MobileMenuWrapper isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+            <MobileMenuContent onClick={handleContainerClick}>
                 {categories.map((category) => {
                     return (
                         <CategoryCard

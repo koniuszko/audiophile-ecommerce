@@ -5,10 +5,10 @@ import Link from "next/link";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {clearCart, decreaseItemAmount, increaseItemAmount, selectCartItems} from "@/features/cart/cartSlice";
-import {cartItem, ShoppingCartProps} from "@/interfaces/interfaces";
+import {cartItem, ModalProps} from "@/interfaces/interfaces";
 import {GrayButtonWrapper} from "@/styles/components";
 import Image from "next/image";
-import {totalSummary} from "@/utils/helpers";
+import {handleContainerClick, totalSummary} from "@/utils/helpers";
 
 
 const CartContentWrapper = styled.div`
@@ -143,7 +143,7 @@ const CartItem = (item: cartItem) => {
     )
 }
 
-type Props = ShoppingCartProps;
+type Props = ModalProps;
 
 const ShoppingCart: FunctionComponent<Props> = ({isOpen, setIsOpen}) => {
     const dispatch = useDispatch();
@@ -156,8 +156,8 @@ const ShoppingCart: FunctionComponent<Props> = ({isOpen, setIsOpen}) => {
 
     return (
         <div>
-            <ModalWrapper isOpen={isOpen}>
-                <CartContentWrapper>
+            <ModalWrapper isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+                <CartContentWrapper onClick={handleContainerClick}>
                     <div className="cart-header">
                         <H6>Cart({cartItems.length})</H6>
                         <GrayButtonWrapper onClick={() => {

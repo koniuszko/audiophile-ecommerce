@@ -1,38 +1,122 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Audiophile FrontEndMentor Challenge
+
+This repository contains my solution for the Audiophile FrontEndMentor Challenge. The challenge required the development
+of an e-commerce website for an audiophile store. I have used Next.js, TypeScript, Redux, Stripe for payments, and
+MongoDB as the database for this project.
+
+Link to the challenge: https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx
+
+## Project Overview
+
+The Audiophile website is designed to provide users with a seamless shopping experience for purchasing high-quality
+audio equipment. Users can browse through a wide range of products, view detailed information about each product, add
+products to their cart, and complete the checkout process using Stripe for secure payments.
+
+## Technologies Used
+
+- Next.js: Next.js is a React framework that allows for server-side rendering and provides an excellent developer
+  experience.
+- TypeScript: TypeScript is a statically typed superset of JavaScript, which helps catch errors during development and
+  improves code quality.
+- Redux: Redux is a predictable state container for JavaScript applications, used here to manage the global state
+  for the shopping cart.
+- Stripe: Stripe is a popular payment processing platform that ensures secure and reliable online transactions.
+- MongoDB: MongoDB is a NoSQL database that provides flexibility and scalability for storing and retrieving data.
+
+## Features
+
+- Product Listing: Users can browse through various audio products and view detailed information about each product.
+- Product Filtering: Users can filter products based on categories to find specific types of audio equipment.
+- Cart Management: Users can add products to the cart, view the items in the cart, update quantities, and remove items.
+- User Authentication: Users can create an account, log in, and securely manage their profile information.
+- Checkout Process: Users can proceed to the checkout process, provide shipping details, and complete the payment using
+  Stripe.
+- Order History: Users can view their order history..
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy of the project up and running, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Clone the repository:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/koniuszko/audiophile-ecommerce.git
+   ```
+2. Install the dependencies:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+3. Setup the environment variables:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Create a `.env.local` file in the root directory of the project and add the following environment variables:
+   ```bash
+   MONGODB_DB_URI=<your_mongodb_uri>
+   STRIPE_PUBLIC_KEY=<your_stripe_publishable_key>
+   STRIPE_SECRET_KEY=<your_stripe_secret_key>
+   NEXTAUTH_SECRET=<your_nextauth_url>
+   STRIPE_SIGNING_SECRET=<your_stripe_signing_secret>
+   ```
+    - Change the API_URL in the congif.ts file to your Next.js public server URL.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. Run the development server:
 
-## Learn More
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+5. Open your browser and visit http://localhost:3000 to access the Audiophile website.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Note that in order to make full functional use of stripe webhooks, you must also configure your stripe account and add
+  a
+  webhook endpoint to your stripe account. You can find more information about this
+  here: https://stripe.com/docs/webhooks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Folder Structure
 
-## Deploy on Vercel
+The project is structured as follows:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `components`: Contains all the React components used in the project.
+- `features`: Contains the Redux slices for managing the global state.
+- `interfaces`: Contains the TypeScript interfaces used in the project.
+- `layouts`: Contains the layout components used in the project.
+- `models` : Contains the Mongoose models used in the project.
+- `pages`: Contains the Next.js pages used in the project.
+- `public`: Contains the public assets used in the project.
+- `store`: Contains the Redux store configuration.
+- `styles`: Contains the global styles used in the project.
+- `types`: Contains the TypeScript types used in the project.
+- `utils`: Contains the utility functions used in the project.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Screenshots
+
+![Zrzut ekranu 2023-05-7 o 12.02.10.png](..%2F..%2FDesktop%2FZrzut%20ekranu%202023-05-7%20o%2012.02.10.png)
+![Zrzut ekranu 2023-05-7 o 12.04.52.png](..%2F..%2FDesktop%2FZrzut%20ekranu%202023-05-7%20o%2012.04.52.png)
+![Zrzut ekranu 2023-05-7 o 12.05.03.png](..%2F..%2FDesktop%2FZrzut%20ekranu%202023-05-7%20o%2012.05.03.png)
+![Zrzut ekranu 2023-05-7 o 12.05.39.png](..%2F..%2FDesktop%2FZrzut%20ekranu%202023-05-7%20o%2012.05.39.png)
+
+## Contribution
+
+If you have any suggestions, improvements, or bug fixes, feel free to open an issue or submit a pull request.
+Contributions are always welcome!
+
+## Still in Progress
+
+- `ShoppigCart` - Store the shopping cart items in Session Storage, or local storage, so that the items persist even
+  after the user closes the browser.
+- `AccountPage` - User can update their profile information (address and password). Implement the functionality to
+  update the user's address and password in the database. Using address as default shipping address for checkout.
+- `AdminDashboard` - Create an admin dashboard to manage the products, orders, and users.
+
+## License
+
+The project is licensed under the MIT License. Feel free to use and modify the code as per your needs.
+
+## Working Demo
+
+You can view a live demo of the Audiophile website here: 

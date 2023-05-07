@@ -35,13 +35,13 @@ const Nav: FunctionComponent = () => {
                     <NavLink href="/">home</NavLink>
                 </li>
                 <li>
-                    <NavLink href="/headphones">headphones</NavLink>
+                    <NavLink href="/category/headphones">headphones</NavLink>
                 </li>
                 <li>
-                    <NavLink href="/speakers">speakers</NavLink>
+                    <NavLink href="/category/speakers">speakers</NavLink>
                 </li>
                 <li>
-                    <NavLink href="/earphones">earphones</NavLink>
+                    <NavLink href="/category/earphones">earphones</NavLink>
                 </li>
             </ul>
         </MenuWrapper>

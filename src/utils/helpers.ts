@@ -18,3 +18,6 @@ export const VatValue = (items: cartItem[]) => {
     return (total * 0.2).toFixed();
 }
 
+export const handleContainerClick = (e: any) => {
+    e.stopPropagation();
+}

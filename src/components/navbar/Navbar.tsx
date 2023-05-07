@@ -24,7 +24,7 @@ const NavbarWrapper = styled.nav`
   justify-content: space-between;
   padding: 32px 24px;
   position: relative;
-  z-index: 9999;
+  z-index: 999;
   border-bottom: 1px solid #282828;
 
   .menu {
@@ -109,7 +109,7 @@ const Navbar: FunctionComponent = () => {
                     </Link>
                 </div>
             </NavbarWrapper>
-            <MobileMenuModal isOpen={isMenuOpen}/>
+            <MobileMenuModal isOpen={isMenuOpen} setIsOpen={setIsMenuOpen}/>
             <ShoppingCart setIsOpen={setIsCartOpen} isOpen={isCartOpen}/>
         </>
 

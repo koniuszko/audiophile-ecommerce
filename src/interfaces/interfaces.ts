@@ -154,13 +154,9 @@ export interface OrderPreviewProps {
     order: IOrder,
 }
 
-export interface MobileMenuModalProps {
+export interface ModalProps {
     isOpen: boolean,
-}
-
-export interface ShoppingCartProps {
-    isOpen: boolean;
-    setIsOpen: (isOpen: boolean) => void;
+    setIsOpen: (isOpen: boolean) => void,
 }
 
 export interface CategoriesNavProps {
