@@ -1,8 +1,35 @@
 import {model, models, Schema} from "mongoose";
 import bcrypt from 'bcrypt';
 import validator from "validator";
-import {IUser} from "@/interfaces/interfaces";
+import {IAddress, IUser} from "@/interfaces/interfaces";
 
+const addressSchema = new Schema<IAddress>({
+    phone: {
+        type: String,
+        required: true,
+        default: "",
+    },
+    street: {
+        type: String,
+        required: true,
+        default: "",
+    },
+    zip: {
+        type: String,
+        required: true,
+        default: "",
+    },
+    city: {
+        type: String,
+        required: true,
+        default: "",
+    },
+    country: {
+        type: String,
+        required: true,
+        default: "",
+    },
+})
 
 const userSchema = new Schema<IUser>({
     name: {
@@ -26,14 +53,15 @@ const userSchema = new Schema<IUser>({
         default: "CUSTOMER",
     },
     address: {
-        type: Object,
-        required: false,
+        type: addressSchema,
+        required: true,
     },
     orders: {
         type: [],
         required: false,
     }
 })
+
 
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) {

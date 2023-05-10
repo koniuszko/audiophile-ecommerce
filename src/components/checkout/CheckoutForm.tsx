@@ -14,6 +14,7 @@ import PaymentRadio from "@/components/checkout/PaymentRadio";
 import {CheckoutFormValidator} from "@/utils/validators";
 import {getSession, useSession} from "next-auth/react";
 import CashOnDeliveryDescription from "@/components/checkout/CashOnDeliveryDescription";
+import {selectAddress} from "@/features/address/addressSlice";
 
 
 const CheckoutWrapper = styled.section`
@@ -54,7 +55,7 @@ const CheckoutWrapper = styled.section`
     gap: 24px;
   }
 
-  .shipping-info {
+  .shipping-info, .payment-details {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -165,23 +166,28 @@ const CartItem = (item: cartItem) => {
     )
 }
 
-
 const CheckoutForm: FunctionComponent = () => {
     const [radioValue, setRadioValue] = useState('credit-card');
     const [userId, setUserId] = useState("unregistered");
+    const [address, setAddress] = useState<IAddress>(useSelector(selectAddress));
+    const [disabled, setDisabled] = useState(false);
 
     const cartItems = useSelector(selectCartItems);
     const {data: session} = useSession();
 
     const shippingFee = cartItems.length > 0 ? 50 : 0;
 
+
     useEffect(() => {
         getSession().then(session => {
             if (session) {
                 setUserId(session.user.id);
+                setDisabled(true)
+
             }
         })
     }, [])
+
 
     const checkoutHandler = async (address: IAddress, paymentMethod: string, products: cartItem[], userId: string) => {
         await sleep(500);
@@ -197,15 +203,7 @@ const CheckoutForm: FunctionComponent = () => {
     return (
         <CheckoutWrapper>
             <Formik
-                initialValues={{
-                    name: '',
-                    email: '',
-                    phone: '',
-                    street: '',
-                    city: '',
-                    zip: '',
-                    country: '',
-                }}
+                initialValues={address}
                 validationSchema={CheckoutFormValidator}
                 onSubmit={(values) => checkoutHandler(values, radioValue, cartItems, userId)}
             >
@@ -223,13 +221,13 @@ const CheckoutForm: FunctionComponent = () => {
                                 <ErrorMessage name="name"
                                               render={msg => <ErrorMsg
                                                   className={"error-message"}>{msg}</ErrorMsg>}/>
-                                <InputField name="name" type="text"/>
+                                <InputField name="name" type="text" disabled={disabled}/>
                             </div>
                             <div className="form-input">
                                 <FormLabel htmlFor="email">Email Address</FormLabel>
                                 <ErrorMessage name="email"
                                               render={msg => <ErrorMsg className="error-message">{msg}</ErrorMsg>}/>
-                                <InputField name="email" type="email"/>
+                                <InputField name="email" type="email" disabled={disabled}/>
                             </div>
                             <div className="form-input">
                                 <FormLabel htmlFor="phone">Phone number</FormLabel>

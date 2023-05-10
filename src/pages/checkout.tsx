@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import {selectCartItems} from "@/features/cart/cartSlice";
 import {H3} from "@/styles/textStyles";
 import {BGWrapper} from "@/styles/global";
+import {selectAddress} from "@/features/address/addressSlice";
 
 const SectionWrapper = styled.section`
   background-color: #fafafa;
@@ -31,6 +32,7 @@ const EmptyCart = styled(H3)`
 
 function Checkout() {
     const cartItems = useSelector(selectCartItems)
+
     return (
         <MainLayout>
             <BGWrapper color={'#fafafa'}>

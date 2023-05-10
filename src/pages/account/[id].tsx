@@ -10,6 +10,9 @@ import {UserDataProps} from "@/interfaces/interfaces";
 import UserOrdersPreview from "@/components/login/UserOrdersPreview";
 import {GrayButtonWrapper} from "@/styles/global";
 import {BlackH2, BlackParagraph, ColorText} from "@/styles/textStyles";
+import {useEffect} from "react";
+import {setAddress} from "@/features/address/addressSlice";
+import {useDispatch} from "react-redux";
 
 const AccountSection = styled.section`
   min-height: calc(100vh - 90px - 664px);
@@ -34,6 +37,20 @@ const AccountSection = styled.section`
 
 function Account({user, orders}: UserDataProps) {
     const {name} = user;
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(setAddress({
+            name: user.name,
+            email: user.email,
+            phone: user.address.phone,
+            street: user.address.street,
+            city: user.address.city,
+            zip: user.address.zip,
+            country: user.address.country,
+        }))
+    }, [])
 
     return (
         <MainLayout>
