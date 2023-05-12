@@ -55,41 +55,13 @@ const AddressSection = styled.section`
     }
   }
 
-  .billing-details {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .shipping-info {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .price {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .price-group {
-    width: 100%;
-  }
-
   @media (min-width: 768px) {
     min-height: calc(100vh - 90px - 383px);
+    width: 690px;
   }
 
   @media (min-width: 1440px) {
-    width: 1100px;
-    margin: 0 auto;
     min-height: calc(100vh - 90px - 408px);
-
-    .checkout {
-      width: 100%;
-      padding: 40px;
-    }
   }
 `;
 
@@ -140,7 +112,7 @@ function Address({ user }: UserDataProps) {
               </div>
               <InputField
                 name="phone"
-                type="phone"
+                type="text"
               />
             </div>
             <div className="form-input">
@@ -153,7 +125,7 @@ function Address({ user }: UserDataProps) {
               />
               <InputField
                 name="street"
-                type="street"
+                type="text"
               />
             </div>
             <div className="form-input">
@@ -166,7 +138,7 @@ function Address({ user }: UserDataProps) {
               />
               <InputField
                 name="zip"
-                type="zip"
+                type="text"
               />
             </div>
             <div className="form-input">
@@ -179,7 +151,7 @@ function Address({ user }: UserDataProps) {
               />
               <InputField
                 name="city"
-                type="city"
+                type="text"
               />
             </div>
             <div className="form-input">
@@ -192,7 +164,7 @@ function Address({ user }: UserDataProps) {
               />
               <InputField
                 name="country"
-                type="country"
+                type="text"
               />
             </div>
             <PrimaryButton type="submit">Submit</PrimaryButton>

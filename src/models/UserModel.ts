@@ -6,27 +6,27 @@ import { BillingAddressProps, IUser } from "@/interfaces/interfaces";
 const addressSchema = new Schema<BillingAddressProps>({
   phone: {
     type: String,
-    required: true,
+    required: false,
     default: "",
   },
   street: {
     type: String,
-    required: true,
+    required: false,
     default: "",
   },
   zip: {
     type: String,
-    required: true,
+    required: false,
     default: "",
   },
   city: {
     type: String,
-    required: true,
+    required: false,
     default: "",
   },
   country: {
     type: String,
-    required: true,
+    required: false,
     default: "",
   },
 });
@@ -54,7 +54,14 @@ const userSchema = new Schema<IUser>({
   },
   address: {
     type: addressSchema,
-    required: true,
+    required: false,
+    default: {
+      phone: "",
+      street: "",
+      zip: "",
+      city: "",
+      country: "",
+    },
   },
   orders: {
     type: [],

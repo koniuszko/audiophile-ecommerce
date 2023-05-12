@@ -69,3 +69,19 @@ export const AddressValidator = Yup.object({
     .required("Required")
     .min(3, "Must be at least 3 characters long"),
 });
+
+export const PasswordValidator = Yup.object({
+  oldPassword: Yup.string().required("Required"),
+  newPassword: Yup.string()
+    .required("Required")
+    .min(3, "Must be at least 3 characters long")
+    .max(20, "Must be 20 characters or less")
+    .matches(
+      passwordRegex,
+      "At least 8 characters, must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number, can contain special characters"
+    ),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref("newPassword"), undefined],
+    "Passwords must match"
+  ),
+});

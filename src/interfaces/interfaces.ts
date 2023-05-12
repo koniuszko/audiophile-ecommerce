@@ -181,3 +181,8 @@ export interface BillingAddressProps {
   zip: string;
   country: string;
 }
+
+export interface PasswordChangeProps {
+  oldPassword: string;
+  newPassword: string;
+}
