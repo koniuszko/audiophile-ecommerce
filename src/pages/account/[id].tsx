@@ -14,19 +14,31 @@ import { useEffect } from "react";
 import { setAddress } from "@/features/address/addressSlice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
+import CategoryHeader from "@/components/category/CategoryHeader";
 
 const AccountSection = styled.section`
   min-height: calc(100vh - 90px - 664px);
-  padding: 24px;
 
   .account-header {
-    margin-top: 24px;
+    margin: 24px 24px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
+    gap: 16px;
+  }
+
+  .account-menu {
+    display: flex;
+    gap: 16px;
   }
 
   @media (min-width: 768px) {
     min-height: calc(100vh - 90px - 383px);
+    .account-header {
+      margin: 24px 40px;
+      flex-direction: row;
+    }
   }
 
   @media (min-width: 1440px) {
@@ -57,20 +69,22 @@ function Account({ user, orders }: UserDataProps) {
   return (
     <MainLayout>
       <AccountSection>
-        <BlackH2>Account Details</BlackH2>
+        <CategoryHeader currentCategory="account details" />
         <div className="account-header">
           <BlackParagraph>
             Hello, <ColorText>{name}</ColorText>
           </BlackParagraph>
-          <Link href={`address/${user._id}`}>
-            <GrayButtonWrapper>Billing Address</GrayButtonWrapper>
-          </Link>
-          <Link href={`password/${user._id}`}>
-            <GrayButtonWrapper>Change password</GrayButtonWrapper>
-          </Link>
-          <GrayButtonWrapper onClick={() => signOut()}>
-            Logout
-          </GrayButtonWrapper>
+          <div className="account-menu">
+            <Link href={`address/${user._id}`}>
+              <GrayButtonWrapper>Billing Address</GrayButtonWrapper>
+            </Link>
+            <Link href={`password/${user._id}`}>
+              <GrayButtonWrapper>Change password</GrayButtonWrapper>
+            </Link>
+            <GrayButtonWrapper onClick={() => signOut()}>
+              Logout
+            </GrayButtonWrapper>
+          </div>
         </div>
         <UserOrdersPreview orders={orders} />
       </AccountSection>

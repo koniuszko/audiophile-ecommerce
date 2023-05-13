@@ -79,6 +79,10 @@ export const PasswordValidator = Yup.object({
     .matches(
       passwordRegex,
       "At least 8 characters, must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number, can contain special characters"
+    )
+    .notOneOf(
+      [Yup.ref("oldPassword"), undefined],
+      "Passwords must be different"
     ),
   confirmPassword: Yup.string().oneOf(
     [Yup.ref("newPassword"), undefined],

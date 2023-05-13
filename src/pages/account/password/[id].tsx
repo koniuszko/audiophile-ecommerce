@@ -43,6 +43,7 @@ const PasswordSection = styled.section`
 
       &-label {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
       }
     }
@@ -51,6 +52,10 @@ const PasswordSection = styled.section`
   @media (min-width: 768px) {
     min-height: calc(100vh - 90px - 383px);
     width: 390px;
+
+    .form-input-label {
+      flex-direction: row;
+    }
   }
 
   @media (min-width: 1440px) {
@@ -77,7 +82,7 @@ function PasswordChange({ user }: UserDataProps) {
       })
       .catch((err) => {
         console.log(err);
-        if (err.response.status === 404) {
+        if (err.response.status === 409) {
           alert("Wrong password");
         }
       });
@@ -114,32 +119,37 @@ function PasswordChange({ user }: UserDataProps) {
               />
             </div>
             <div className="form-input">
-              <FormLabel htmlFor="newPassword">New password</FormLabel>
-              <ErrorMessage
-                name="newPassword"
-                render={(msg) => (
-                  <ErrorMsg className="error-message">{msg}</ErrorMsg>
-                )}
-              />
+              <div className="form-input-label">
+                <FormLabel htmlFor="newPassword">New password</FormLabel>
+                <ErrorMessage
+                  name="newPassword"
+                  render={(msg) => (
+                    <ErrorMsg className="error-message">{msg}</ErrorMsg>
+                  )}
+                />
+              </div>
               <InputField
                 name="newPassword"
                 type="password"
               />
             </div>
             <div className="form-input">
-              <FormLabel htmlFor="confirmPassword">Confirm password</FormLabel>
-              <ErrorMessage
-                name="confirmPassword"
-                render={(msg) => (
-                  <ErrorMsg className="error-message">{msg}</ErrorMsg>
-                )}
-              />
+              <div className="form-input-label">
+                <FormLabel htmlFor="confirmPassword">
+                  Confirm password
+                </FormLabel>
+                <ErrorMessage
+                  name="confirmPassword"
+                  render={(msg) => (
+                    <ErrorMsg className="error-message">{msg}</ErrorMsg>
+                  )}
+                />
+              </div>
               <InputField
                 name="confirmPassword"
                 type="password"
               />
             </div>
-
             <PrimaryButton type="submit">Submit</PrimaryButton>
           </Form>
         </Formik>

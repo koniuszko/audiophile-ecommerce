@@ -11,7 +11,6 @@ export default async function handler(
   if (req.method === "PUT") {
     await dbConnect();
     const user = await User.findById(req.query.id).select("+password");
-    const pwValid = await user?.comparePassword(req.body.oldPassword);
     if (user && (await user.comparePassword(req.body.oldPassword))) {
       await User.updateOne(
         {
@@ -25,6 +24,6 @@ export default async function handler(
       );
       res.status(200).json({ message: "Your password has been updated!" });
     } else
-      res.status(404).json({ message: "Current password does not match!" });
+      res.status(409).json({ message: "Current password does not match!" });
   }
 }
