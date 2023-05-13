@@ -5,6 +5,7 @@ import {GlobalStyle} from "@/styles/global";
 import {SessionProvider} from "next-auth/react";
 import {persistor, store} from "../store/store";
 import {PersistGate} from "redux-persist/integration/react";
+import {Analytics} from "@vercel/analytics/react";
 
 
 export default function App({Component, pageProps: {session, ...pageProps}}: AppProps) {
@@ -23,6 +24,7 @@ export default function App({Component, pageProps: {session, ...pageProps}}: App
                     </SessionProvider>
                 </PersistGate>
             </Provider>
+            <Analytics/>
         </>
 
     )
