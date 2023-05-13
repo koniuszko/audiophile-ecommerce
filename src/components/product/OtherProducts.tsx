@@ -101,7 +101,6 @@ const OtherProducts: FunctionComponent<Props> = ({products}) => {
             <H3>
                 You may also like
             </H3>
-            ,
             <div className="product-container">
                 {randomProducts.map((product, index) => (
                     <OtherProductCard key={index} product={product}/>
