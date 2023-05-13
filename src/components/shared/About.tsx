@@ -14,9 +14,11 @@ const AboutWrapper = styled.section`
   padding: 0 24px 120px;
   text-align: center;
 
+
   img {
     margin: 0 auto;
     border-radius: 8px;
+    margin: 0 auto;
   }
 
   h2 {
