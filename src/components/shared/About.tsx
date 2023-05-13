@@ -16,6 +16,7 @@ const AboutWrapper = styled.section`
 
 
   img {
+    margin: 0 auto;
     border-radius: 8px;
     margin: 0 auto;
   }

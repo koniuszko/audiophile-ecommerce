@@ -45,8 +45,6 @@ const MainWrapper = styled.section`
   }
 
   @media (min-width: 1440px) {
-    margin: 0 auto;
-    padding: 0;
     width: 1100px;
     gap: 48px;
   }

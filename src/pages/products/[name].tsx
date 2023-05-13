@@ -74,9 +74,10 @@ const ProductSection = styled.section`
   }
 
   @media (min-width: 768px) {
-    margin: 0 auto;
     width: 690px;
+    margin: 0 auto;
     padding: 32px 0;
+
 
     .product-container {
       flex-direction: row;

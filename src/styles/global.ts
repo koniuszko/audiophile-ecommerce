@@ -1,8 +1,7 @@
-import styled, {createGlobalStyle} from "styled-components";
-import {Field} from "formik";
-import {ColorProps, IModalProps} from "@/interfaces/interfaces";
+import styled, { createGlobalStyle } from "styled-components";
+import { Field } from "formik";
+import { ColorProps, IModalProps } from "@/interfaces/interfaces";
 import Link from "next/link";
-
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -30,17 +29,17 @@ export const GlobalStyle = createGlobalStyle`
   li {
     list-style: none;
   }
-`
+`;
 
 export const InputField = styled(Field)`
   height: 56px;
-  border: 1px solid #CFCFCF;
+  border: 1px solid #cfcfcf;
   border-radius: 8px;
   padding: 18px 24px;
   font-size: 14px;
   font-weight: bold;
   letter-spacing: -0.25px;
-  color: #CFCFCF;
+  color: #cfcfcf;
 
   &::placeholder {
     font-size: 12px;
@@ -50,20 +49,20 @@ export const InputField = styled(Field)`
 
   &:focus {
     color: #191919;
-    border-color: #D87D4A;
-    caret-color: #D87D4A;
+    border-color: #d87d4a;
+    caret-color: #d87d4a;
   }
-`
+`;
 
 export const RadioField = styled(Field)`
   height: 56px;
-  border: 1px solid #CFCFCF;
+  border: 1px solid #cfcfcf;
   border-radius: 8px;
   padding: 18px 24px;
   font-size: 14px;
   font-weight: bold;
   letter-spacing: -0.25px;
-  color: #CFCFCF;
+  color: #cfcfcf;
 
   &::placeholder {
     font-size: 12px;
@@ -73,10 +72,10 @@ export const RadioField = styled(Field)`
 
   &:focus {
     color: #191919;
-    border-color: #D87D4A;
-    caret-color: #D87D4A;
+    border-color: #d87d4a;
+    caret-color: #d87d4a;
   }
-`
+`;
 
 const Button = styled.button`
   width: 160px;
@@ -85,35 +84,34 @@ const Button = styled.button`
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: .2s;
+  transition: 0.2s;
   cursor: pointer;
-`
+`;
 
 export const PrimaryButton = styled(Button)`
-  background-color: #D87D4A;
+  background-color: #d87d4a;
   border: none;
-  color: #FFF;
-  
+  color: #fff;
+
   &:hover {
-    background-color: #FBAF85;
+    background-color: #fbaf85;
   }
 
   &:disabled {
-    background-color: #CFCFCF;
+    background-color: #cfcfcf;
     cursor: not-allowed;
   }
-`
+`;
 
 export const PrimaryBlackButton = styled(Button)`
   background-color: #000;
   border: none;
-  color: #FFF;
-
+  color: #fff;
 
   &:hover {
-    background-color: #4C4C4C;
+    background-color: #4c4c4c;
   }
-`
+`;
 
 export const SecondaryButton = styled(Button)`
   background-color: transparent;
@@ -122,33 +120,33 @@ export const SecondaryButton = styled(Button)`
 
   &:hover {
     background-color: #000;
-    color: #FFF;
+    color: #fff;
   }
-`
+`;
 
 export const FormLabel = styled.label`
   font-size: 12px;
   font-weight: bold;
   letter-spacing: -0.21px;
-`
+`;
 
 export const RadioLabel = styled.label`
   height: 56px;
-  border: 1px solid #CFCFCF;
+  border: 1px solid #cfcfcf;
   font-size: 12px;
   font-weight: bold;
   letter-spacing: -0.21px;
-`
+`;
 
 export const ErrorMsg = styled.p`
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 0.2px;
   color: #d82700;
-`
+`;
 
 export const ModalWrapper = styled.div<IModalProps>`
-  display: ${({isOpen}) => (isOpen ? 'block' : 'none')};
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -156,7 +154,6 @@ export const ModalWrapper = styled.div<IModalProps>`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
-
 `;
 
 export const ModalContent = styled.div`
@@ -170,35 +167,34 @@ export const ModalContent = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #FFF;
+  background-color: #fff;
   padding: 32px;
   border-radius: 8px;
 
-  h3, p {
+  h3,
+  p {
     text-align: left;
   }
-
-`
+`;
 
 export const NavLink = styled(Link)`
   font-size: 13px;
   font-weight: bold;
   letter-spacing: 2px;
   text-decoration: none;
-  color: #FFF;
+  color: #fff;
   text-transform: uppercase;
-  transition: .2s;
+  transition: 0.2s;
 
   &:hover {
-    color: #D87D4A;
+    color: #d87d4a;
   }
-
-`
+`;
 
 export const StyledHeader = styled.header`
   background-color: #191919;
   height: 102px;
-  color: #FFF;
+  color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -207,7 +203,7 @@ export const StyledHeader = styled.header`
   @media (min-width: 768px) {
     height: 246px;
   }
-`
+`;
 
 export const CategoryCardWrapper = styled.div`
   display: flex;
@@ -230,19 +226,19 @@ export const CategoryCardWrapper = styled.div`
   .category-link {
     transform: translateY(-52px);
   }
-`
-
+`;
 
 export const GrayButtonWrapper = styled.button`
   font-size: 15px;
   font-weight: 500;
   color: #808080;
-  width: 80px;
+  cursor: pointer;
 
   &:hover {
     color: #d87d4a;
   }
-`
+`;
 
 export const BGWrapper = styled.div<ColorProps>`
-  background-color: ${props => props.color};`
+  background-color: ${(props) => props.color};
+`;

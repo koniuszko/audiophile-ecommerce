@@ -46,6 +46,7 @@ const HeroWrapper = styled.section`
   }
 `
 const Hero: FunctionComponent = () => {
+
     return (
         <BGWrapper color={'#191919'}>
             <HeroWrapper>
