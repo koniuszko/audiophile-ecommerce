@@ -19,7 +19,7 @@ products to their cart, and complete the checkout process using Stripe for secur
 - TypeScript: TypeScript is a statically typed superset of JavaScript, which helps catch errors during development and
   improves code quality.
 - Redux: Redux is a predictable state container for JavaScript applications, used here to manage the global state
-  for the shopping cart.
+  for the shopping cart and address form.
 - Stripe: Stripe is a popular payment processing platform that ensures secure and reliable online transactions.
 - MongoDB: MongoDB is a NoSQL database that provides flexibility and scalability for storing and retrieving data.
 
@@ -32,6 +32,7 @@ products to their cart, and complete the checkout process using Stripe for secur
 - Checkout Process: Users can proceed to the checkout process, provide shipping details, and complete the payment using
   Stripe.
 - Order History: Users can view their order history..
+- Account Page: Users can update their profile information (address and password).
 
 ## Getting Started
 
@@ -105,10 +106,6 @@ Contributions are always welcome!
 
 ## Still in Progress
 
-- `ShoppigCart` - Store the shopping cart items in Session Storage, or local storage, so that the items persist even
-  after the user closes the browser.
-- `AccountPage` - User can update their profile information (address and password). Implement the functionality to
-  update the user's address and password in the database. Using address as default shipping address for checkout.
 - `AdminDashboard` - Create an admin dashboard to manage the products, orders, and users.
 
 ## License
