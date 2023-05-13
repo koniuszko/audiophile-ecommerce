@@ -33,7 +33,8 @@ const MainWrapper = styled.section`
   }
 
   @media (min-width: 768px) {
-    padding: 0 40px;
+    margin: 0 auto;
+    width: 690px;
     gap: 32px;
 
     .container-wrapper {

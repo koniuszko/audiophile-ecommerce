@@ -74,7 +74,9 @@ const ProductSection = styled.section`
   }
 
   @media (min-width: 768px) {
-    padding: 32px 40px;
+    margin: 0 auto;
+    width: 690px;
+    padding: 32px 0;
 
     .product-container {
       flex-direction: row;
@@ -95,6 +97,8 @@ const ProductSection = styled.section`
     }
 
     .product-gallery {
+      margin: 48px auto 0;
+      width: 690px;
       height: 368px;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -104,7 +108,6 @@ const ProductSection = styled.section`
 
   @media (min-width: 1440px) {
     width: 1100px;
-    margin: 0 auto;
     padding: 80px 0 0;
 
     .feature-container {
@@ -124,6 +127,8 @@ const ProductSection = styled.section`
     }
 
     .product-gallery {
+      margin: 48px auto 0;
+      width: 1100px;
       height: 592px;
     }
   }
