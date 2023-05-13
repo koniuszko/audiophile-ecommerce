@@ -194,6 +194,7 @@ const CheckoutForm: FunctionComponent = () => {
         axios.post("/api/checkout", {address, paymentMethod, products, userId})
             .then(res => {
                 if (res.status === 200) {
+                    localStorage.removeItem("persist:root");
                     window.location.href = res.data.url;
                 }
             })
