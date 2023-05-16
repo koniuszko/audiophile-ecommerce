@@ -6,6 +6,14 @@ MongoDB as the database for this project.
 
 Link to the challenge: https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx
 
+## Working Demo
+
+You can view a live demo of the Audiophile website here:
+https://audiophile-ecommerce-sigma.vercel.app/
+
+To test the checkout process, you can use the following test card details: 4242 4242 4242 4242, any future date, and
+any 3-digit CVC code.
+
 ## Project Overview
 
 The Audiophile website is designed to provide users with a seamless shopping experience for purchasing high-quality
@@ -111,11 +119,3 @@ Contributions are always welcome!
 ## License
 
 The project is licensed under the MIT License. Feel free to use and modify the code as per your needs.
-
-## Working Demo
-
-You can view a live demo of the Audiophile website here:
-https://audiophile-ecommerce-sigma.vercel.app/
-
-To test the checkout process, you can use the following test card details: 4242 4242 4242 4242, any future date, and
-any 3-digit CVC code.
